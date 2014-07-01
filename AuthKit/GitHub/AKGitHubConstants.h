@@ -1,3 +1,5 @@
+extern NSString *const AKGitHubServerDefaultURL;
+
 extern NSString *const AKGitHubClientID;
 extern NSString *const AKGitHubClientSecret;
 extern NSString *const AKGitHubScope;

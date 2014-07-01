@@ -1,6 +1,6 @@
 #import "AKClient.h"
 
-@interface AKGitHubClient <NSObject>
+@interface AKGitHubClient : AKClient
 
 /*!
  * GitHub Access Token after successful login
@@ -10,13 +10,10 @@
 /*!
  * Initializes GitHub Auth Client with ClientID and ClientSecret with scopes
  */
-- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note noteURL:(NSString *)noteURL;
+- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note;
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password secondPassword:(NSString *)password success:(void (^)(id loginDetails))success failure:(void (^)(NSError* error))failure;
+- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note noteURL:(NSString *)noteURL serverURL:(NSString *)serverURL;
 
-- (void)loginWithPasswordToken:(NSString *)passwordToken success:(void (^)(id loginDetails))success failure:(void (^)(NSError* error))failure;
-
-- (void)loginWithPasswordToken:(NSString *)passwordToken secondPassword:(NSString *)password success:(void (^)(id loginDetails))success failure:(void (^)(NSError* error))failure;
-
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password secondPassword:(NSString *)secondPassword success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 @end

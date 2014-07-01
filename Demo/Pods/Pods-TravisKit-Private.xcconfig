@@ -1,0 +1,5 @@
+#include "Pods-TravisKit.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/TravisKit" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/JSONModel" "${PODS_ROOT}/Headers/SocketRocket" "${PODS_ROOT}/Headers/TravisKit" "${PODS_ROOT}/Headers/libPusher" "${PODS_ROOT}/Headers/libPusher/Pusher"
+OTHER_LDFLAGS = -ObjC ${PODS_TRAVISKIT_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}

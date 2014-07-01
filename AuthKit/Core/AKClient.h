@@ -3,13 +3,18 @@
  */
 extern NSString *const AKUsername;
 extern NSString *const AKPassword;
+extern NSString *const AKServerURL;
 
-@interface AKClient <NSObject>
+typedef void (^AKSuccessBlock)(id loginDetails);
+typedef void (^AKFailureBlock)(id responseObject, NSError* error);
+
+@interface AKClient : NSObject
 
 /*!
  * Contains parameters which are needed to access the API
  */
 @property (nonatomic, readonly) NSDictionary* accessParameters;
+@property (nonatomic, readonly) NSURL* baseURL;
 
 /*!
  * Designated initializer for any AuthKit client. Each API requires
@@ -22,12 +27,11 @@ extern NSString *const AKPassword;
 /*!
  * Abstract login details, any number of parameters could be provided here.
  */
-- (void)loginWithDetails:(NSDictionary *)details success:(void (^)(id loginDetails))success failure:(void (^)(NSError* error))failure;
+- (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 /*!
  * In most cases, this API is used to login. But certain API's also require a second password
  * or additional generated token.
  */
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(void (^)(id loginDetails))success failure:(void (^)(NSError* error))failure;
-
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 @end

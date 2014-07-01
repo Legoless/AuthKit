@@ -1,3 +1,5 @@
+NSString *const AKGitHubServerDefaultURL = @"https://api.github.com";
+
 NSString *const AKGitHubClientID = @"kAKGitHubClientIDKey";
 NSString *const AKGitHubClientSecret = @"kAKGitHubClientSecretKey";
 NSString *const AKGitHubScope = @"kAKGitHubScopeKey";
@@ -17,7 +19,7 @@ NSString *const AKGitHubScopeRepoDeployment = @"repo_deployment";
 NSString *const AKGitHubScopeRepoStatus = @"repo:status";
 NSString *const AKGitHubScopeRepoDelete = @"delete_repo";
 NSString *const AKGitHubScopeNotifications = @"notifications";
-NSString *const AKGitHubScopeGist = @"gist"
+NSString *const AKGitHubScopeGist = @"gist";
 NSString *const AKGitHubScopeRepoHookRead = @"read:repo_hook";
 NSString *const AKGitHubScopeRepoHookWrite = @"write:repo_hook";
 NSString *const AKGitHubScopeRepoHookAdmin = @"admin:repo_hook";

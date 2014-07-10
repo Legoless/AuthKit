@@ -1,6 +1,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "AKGitHubLogin.h"
+#import "AKGitHubUser.h"
 
 #import "AKGitHubConstants.h"
 
@@ -14,6 +15,11 @@
 @end
 
 @implementation AKGitHubClient
+
+- (BOOL)isAuthorized
+{
+    return ([self.accessToken length] > 0);
+}
 
 - (id)initWithAccessParameters:(NSDictionary *)parameters
 {
@@ -90,7 +96,6 @@
 
 - (void)loginWithUser:(NSDictionary *)parameters success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    
     //
     // Handles second password
     //
@@ -148,6 +153,11 @@
         {
             self.accessToken = [login.token copy];
             
+            //
+            // This sets the request serializer to OAuth token, so we can do requests
+            //
+            [self.manager.requestSerializer setValue:[NSString stringWithFormat:@"token %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+            
             success (login);
         }
         else if (error && failure)
@@ -162,7 +172,41 @@
             failure (operation.responseObject ? operation.responseObject : operation.responseString, error);
         }
     }];
+}
 
+- (void)userWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
+{
+    [self.manager GET:@"user" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSError* error;
+        
+        AKGitHubUser* user = [[AKGitHubUser alloc] initWithDictionary:responseObject error:&error];
+        
+        if (user && success)
+        {
+            success(user);
+        }
+        else if (error && failure)
+        {
+            failure (responseObject, error);
+        }
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        if (failure)
+        {
+            failure (operation.responseObject ? operation.responseObject : operation.responseString, error);
+        }
+    }];
+}
+
+- (AFHTTPRequestOperationManager *)manager
+{
+    //
+    // Just copy the current manager here, should also contain all token information
+    //
+    
+    return [self.manager copy];
 }
 
 @end

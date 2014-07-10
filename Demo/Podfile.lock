@@ -23,9 +23,9 @@ PODS:
   - AuthKit (0.1.0):
     - AuthKit/Core
     - AuthKit/GitHub
-  - AuthKit/Core (0.1.0)
-  - AuthKit/GitHub (0.1.0):
+  - AuthKit/Core (0.1.0):
     - AFNetworking (~> 2.0)
+  - AuthKit/GitHub (0.1.0):
     - AuthKit/Core
     - JSONModel
   - JSONModel (0.13.0)
@@ -39,7 +39,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  AuthKit: f5ed72b4a76f3e1f4976a86b9462beea7c45c6e8
+  AuthKit: d8bf87cb0636ae519a726c0736709707678e9876
   JSONModel: 62ea96b49ea18a8b91ef89c249dba291d8601d82
 
 COCOAPODS: 0.33.1

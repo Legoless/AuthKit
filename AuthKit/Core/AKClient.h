@@ -1,3 +1,13 @@
+//
+//  AKClient.h
+//  AuthKit
+//
+//  Created by Dal Rupnik on 17/06/14.
+//  Copyright (c) 2014 arvystate.net. All rights reserved.
+//
+
+#import <AFNetworking/AFNetworking.h>
+
 /*!
  * Most used string constants
  */
@@ -5,8 +15,10 @@ extern NSString *const AKUsername;
 extern NSString *const AKPassword;
 extern NSString *const AKServerURL;
 
-typedef void (^AKSuccessBlock)(id loginDetails);
+typedef void (^AKSuccessBlock)(id details);
 typedef void (^AKFailureBlock)(id responseObject, NSError* error);
+
+@class AFHTTPRequestOperationManager;
 
 @interface AKClient : NSObject
 
@@ -14,7 +26,16 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  * Contains parameters which are needed to access the API
  */
 @property (nonatomic, readonly) NSDictionary* accessParameters;
+
+/*!
+ * Base URL of the API, usually corresponds to correct version
+ */
 @property (nonatomic, readonly) NSURL* baseURL;
+
+/*!
+ * Returns YES, when AKClient is allowed to make authorized requests
+ */
+@property (nonatomic, readonly) BOOL isAuthorized;
 
 /*!
  * Designated initializer for any AuthKit client. Each API requires
@@ -34,4 +55,16 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  * or additional generated token.
  */
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
+
+/*!
+ * Once logged in, this method returns default user details for currently logged in user.
+ */
+- (void)userWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
+
+/*!
+ * Returns new instance of connection manager configured to work with the API, usually AFNetworking
+ * AFHTTPRequestOperationManager. This enables AKClient subclasses to expose direct working with APIs.
+ */
+- (AFHTTPRequestOperationManager *)manager;
+
 @end

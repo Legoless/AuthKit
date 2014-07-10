@@ -16,6 +16,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'AuthKit/Core/*.{h,m}'
+    
+    ss.dependency 'AFNetworking', '~> 2.0'
   end
 
   s.subspec 'GitHub' do |ss|
@@ -23,7 +25,6 @@ Pod::Spec.new do |s|
     
     ss.dependency 'AuthKit/Core'
 
-    ss.dependency 'AFNetworking', '~> 2.0'
     ss.dependency 'JSONModel'
   end
 

@@ -10,6 +10,7 @@ AuthKit is to authentication as to what ARAnalytics is to all analytics provider
 - Easily login to the next services:
   - GitHub
   - ...
+- Get logined user details for each service
 
 # Contribution
 

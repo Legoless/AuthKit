@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name     = 'AuthKit'
-  s.version  = '0.3.1'
+  s.version  = '0.3.2'
   s.license  = 'MIT'
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'
   s.authors  = { 'Dal Rupnik' => 'legoless@gmail.com' }
-  s.source   = { :git => 'https://github.com/legoless/AuthKit.git', :tag => "0.3.1" }
+  s.source   = { :git => 'https://github.com/legoless/AuthKit.git', :tag => "0.3.2" }
   s.platform = :ios, '7.0'
   s.requires_arc = true
 

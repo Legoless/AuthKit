@@ -6,4 +6,5 @@
 //  Copyright (c) 2014 arvystate.net. All rights reserved.
 //
 
-#import "AKGitHubClient.h"
+#import "AKCore.h"
+#import "AKGitHub.h"

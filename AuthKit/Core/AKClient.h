@@ -13,6 +13,7 @@
  */
 extern NSString *const AKUsername;
 extern NSString *const AKPassword;
+extern NSString *const AKAccessToken;
 extern NSString *const AKServerURL;
 
 typedef void (^AKSuccessBlock)(id details);
@@ -65,6 +66,6 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  * Returns new instance of connection manager configured to work with the API, usually AFNetworking
  * AFHTTPRequestOperationManager. This enables AKClient subclasses to expose direct working with APIs.
  */
-- (AFHTTPRequestOperationManager *)manager;
+- (AFHTTPRequestOperationManager *)connectionManager;
 
 @end

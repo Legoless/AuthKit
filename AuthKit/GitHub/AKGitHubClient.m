@@ -42,12 +42,20 @@
         //
         // Check for must have parameters
         //
-        if ( (parameters[AKGitHubClientID] == nil) || (parameters[AKGitHubClientSecret] == nil) || ([parameters[AKGitHubScope] count] == 0) )
+        if (( (parameters[AKGitHubClientID] == nil) || (parameters[AKGitHubClientSecret] == nil) || ([parameters[AKGitHubScope] count] == 0) ) && (![parameters[AKAccessToken] length]) )
         {
             return nil;
         }
         
         self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
+        
+        //
+        // Use access token as default parameter
+        //
+        if ([parameters[AKAccessToken] length])
+        {
+            self.accessToken = parameters[AKAccessToken];
+        }
     }
     
     return self;
@@ -200,13 +208,23 @@
     }];
 }
 
-- (AFHTTPRequestOperationManager *)manager
+- (AFHTTPRequestOperationManager *)connectionManager
 {
     //
     // Just copy the current manager here, should also contain all token information
     //
     
-    return [self.manager copy];
+    AFHTTPRequestOperationManager *manager = [self.manager copy];
+
+    if (self.accessToken)
+    {
+        //
+        // This sets the request serializer to OAuth token, so we can do requests
+        //
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"token %@", self.accessToken] forHTTPHeaderField:@"Authorization"];
+    }
+
+    return manager;
 }
 
 @end

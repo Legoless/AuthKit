@@ -13,6 +13,7 @@
  */
 NSString *const AKUsername = @"kAKUsernameKey";
 NSString *const AKPassword = @"kAKPasswordKey";
+NSString *const AKAccessToken = @"kAKAccessTokenKey";
 NSString *const AKServerURL = @"kAKServerURL";
 
 @interface AKClient ()
@@ -54,7 +55,7 @@ NSString *const AKServerURL = @"kAKServerURL";
 
 #pragma mark - Main methods
 
-- (AFHTTPRequestOperationManager *)manager
+- (AFHTTPRequestOperationManager *)connectionManager
 {
     return [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
 }
@@ -62,7 +63,7 @@ NSString *const AKServerURL = @"kAKServerURL";
 #pragma mark - Convenience methods
 
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password  success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
     [self loginWithDetails:@{ AKUsername : username, AKPassword : password } success:success failure:failure];
 }

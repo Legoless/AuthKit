@@ -20,14 +20,17 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AuthKit (0.1.0):
+  - AuthKit (0.4.0):
     - AuthKit/Core
+    - AuthKit/Crashlytics
     - AuthKit/GitHub
-  - AuthKit/Core (0.1.0):
+  - AuthKit/Core (0.4.0):
     - AFNetworking (~> 2.0)
-  - AuthKit/GitHub (0.1.0):
-    - AuthKit/Core
     - JSONModel
+  - AuthKit/Crashlytics (0.4.0):
+    - AuthKit/Core
+  - AuthKit/GitHub (0.4.0):
+    - AuthKit/Core
   - JSONModel (0.13.0)
 
 DEPENDENCIES:
@@ -39,7 +42,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  AuthKit: d8bf87cb0636ae519a726c0736709707678e9876
+  AuthKit: 7747809dda9cb407fdba922463b1c9e96c135a68
   JSONModel: 62ea96b49ea18a8b91ef89c249dba291d8601d82
 
 COCOAPODS: 0.33.1

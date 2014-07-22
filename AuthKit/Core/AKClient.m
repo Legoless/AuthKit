@@ -48,6 +48,8 @@ NSString *const AKServerURL = @"kAKServerURL";
         {
             self.baseURL = parameters[AKServerURL];
         }
+        
+        self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
     }
     
     return self;
@@ -55,9 +57,9 @@ NSString *const AKServerURL = @"kAKServerURL";
 
 #pragma mark - Main methods
 
-- (AFHTTPRequestOperationManager *)connectionManager
+- (AFHTTPRequestOperationManager *)managerCopy
 {
-    return [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
+    return [self.manager copy];
 }
 
 #pragma mark - Convenience methods

@@ -9,7 +9,6 @@
 
 @interface AKGitHubClient ()
 
-@property (nonatomic, strong) AFHTTPRequestOperationManager* manager;
 @property (nonatomic, strong, readwrite) NSString* accessToken;
 
 @end
@@ -46,9 +45,7 @@
         {
             return nil;
         }
-        
-        self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
-        
+
         //
         // Use access token as default parameter
         //

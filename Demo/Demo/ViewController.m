@@ -6,13 +6,14 @@
 //  Copyright (c) 2014 arvystate.net. All rights reserved.
 //
 
-#import <AuthKit/AKGitHub.h>
+#import <AuthKit/AuthKit.h>
 
 #import "ViewController.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) AKGitHubClient* client;
+@property (nonatomic, strong) AKGitHubClient* gitHubClient;
+@property (nonatomic, strong) AKCrashlyticsClient* crashlyticsClient;
 
 @end
 
@@ -22,13 +23,26 @@
 {
     [super viewDidAppear:animated];
     
-    self.client = [[AKGitHubClient alloc] initWithClientID:@"<YOUR_CLIENT_ID>" clientSecret:@"<YOUR_CLIENT_SECRET>" scopes:@[ AKGitHubScopeUser, AKGitHubScopeRepo ] note:@"Test"];
+    self.gitHubClient = [[AKGitHubClient alloc] initWithClientID:@"<YOUR_CLIENT_ID>" clientSecret:@"<YOUR_CLIENT_SECRET>" scopes:@[ AKGitHubScopeUser, AKGitHubScopeRepo ] note:@"Test"];
     
-    [self.client loginWithUsername:@"<USERNAME>" password:@"<PASSWORD>" success:^(id loginDetails)
+    [self.gitHubClient loginWithUsername:@"<USERNAME>" password:@"<PASSWORD>" success:^(id loginDetails)
     {
         NSLog(@"SUCCESS! %@", loginDetails);
         
-        NSLog(@"TOKEN: %@", self.client.accessToken);
+        NSLog(@"TOKEN: %@", self.gitHubClient.accessToken);
+    }
+    failure:^(id responseObject, NSError *error)
+    {
+        NSLog(@"ERROR: %@", error);
+    }];
+     
+    self.crashlyticsClient = [[AKCrashlyticsClient alloc] initWithDeveloperToken:@"<DEVELOPER_TOKEN>"];
+    
+    [self.crashlyticsClient loginWithUsername:@"<USERNAME>" password:@"<PASSWORD>" success:^(id loginDetails)
+    {
+        NSLog(@"SUCCESS! %@", loginDetails);
+
+        NSLog(@"TOKEN: %@", self.crashlyticsClient.accessToken);
     }
     failure:^(id responseObject, NSError *error)
     {

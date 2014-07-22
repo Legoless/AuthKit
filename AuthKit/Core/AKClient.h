@@ -24,6 +24,15 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
 @interface AKClient : NSObject
 
 /*!
+ * AFNetworking operation manager used by the class
+ *
+ * Note: Use managerCopy if you wish to change the parameters,
+ *       it is exposed only for subclassing.
+ *
+ */
+@property (nonatomic, strong) AFHTTPRequestOperationManager* manager;
+
+/*!
  * Contains parameters which are needed to access the API
  */
 @property (nonatomic, readonly) NSDictionary* accessParameters;
@@ -66,6 +75,6 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  * Returns new instance of connection manager configured to work with the API, usually AFNetworking
  * AFHTTPRequestOperationManager. This enables AKClient subclasses to expose direct working with APIs.
  */
-- (AFHTTPRequestOperationManager *)connectionManager;
+- (AFHTTPRequestOperationManager *)managerCopy;
 
 @end

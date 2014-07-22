@@ -8,3 +8,4 @@
 
 #import "AKCore.h"
 #import "AKGitHub.h"
+#import "AKCrashlytics.h"

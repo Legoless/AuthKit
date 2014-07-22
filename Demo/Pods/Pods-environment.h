@@ -51,19 +51,25 @@
 // AuthKit
 #define COCOAPODS_POD_AVAILABLE_AuthKit
 #define COCOAPODS_VERSION_MAJOR_AuthKit 0
-#define COCOAPODS_VERSION_MINOR_AuthKit 1
+#define COCOAPODS_VERSION_MINOR_AuthKit 4
 #define COCOAPODS_VERSION_PATCH_AuthKit 0
 
 // AuthKit/Core
 #define COCOAPODS_POD_AVAILABLE_AuthKit_Core
 #define COCOAPODS_VERSION_MAJOR_AuthKit_Core 0
-#define COCOAPODS_VERSION_MINOR_AuthKit_Core 1
+#define COCOAPODS_VERSION_MINOR_AuthKit_Core 4
 #define COCOAPODS_VERSION_PATCH_AuthKit_Core 0
+
+// AuthKit/Crashlytics
+#define COCOAPODS_POD_AVAILABLE_AuthKit_Crashlytics
+#define COCOAPODS_VERSION_MAJOR_AuthKit_Crashlytics 0
+#define COCOAPODS_VERSION_MINOR_AuthKit_Crashlytics 4
+#define COCOAPODS_VERSION_PATCH_AuthKit_Crashlytics 0
 
 // AuthKit/GitHub
 #define COCOAPODS_POD_AVAILABLE_AuthKit_GitHub
 #define COCOAPODS_VERSION_MAJOR_AuthKit_GitHub 0
-#define COCOAPODS_VERSION_MINOR_AuthKit_GitHub 1
+#define COCOAPODS_VERSION_MINOR_AuthKit_GitHub 4
 #define COCOAPODS_VERSION_PATCH_AuthKit_GitHub 0
 
 // JSONModel

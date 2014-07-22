@@ -114,7 +114,7 @@
     }];
 }
 
-- (AFHTTPRequestOperationManager *)connectionManager
+- (AFHTTPRequestOperationManager *)managerCopy
 {
     AFHTTPRequestOperationManager *manager = [self.manager copy];
     

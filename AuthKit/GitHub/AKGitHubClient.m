@@ -213,7 +213,7 @@
     }];
 }
 
-- (AFHTTPRequestOperationManager *)connectionManager
+- (AFHTTPRequestOperationManager *)managerCopy
 {
     //
     // Just copy the current manager here, should also contain all token information

@@ -86,7 +86,7 @@
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    [self.manager POST:@"api/v2/session" parameters:@{ @"email" : details[AKUsername], @"password" : details[AKPassword] } success:^(AFHTTPRequestOperation *operation, id responseObject)
+    [self.manager POST:@"session" parameters:@{ @"email" : details[AKUsername], @"password" : details[AKPassword] } success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
         NSError* error;
         

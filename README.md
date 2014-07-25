@@ -1,16 +1,18 @@
 AuthKit
 =======
 
-This project is filling the gap that new migration from AFNetworking 1.x to 2.x made, since many existing libraries cannot be used with 2.x version.
+AuthKit is to authentication as to what ARAnalytics is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the API directly.
 
-AuthKit is to authentication as to what ARAnalytics is to all analytics providers.
+This project is filling the gap that new migration from AFNetworking 1.x to 2.x made, since many existing libraries cannot be used with 2.x version.
 
 # Features
 
 - Easily login to the next services:
+  - Crashlytics
   - GitHub
   - ...
 - Get logined user details for each service
+- A prebuilt view controller that handles all logging in for you
 
 # Contribution
 

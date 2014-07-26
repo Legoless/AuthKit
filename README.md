@@ -10,6 +10,7 @@ Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries
 - Easily login to the next services:
   - Crashlytics
   - GitHub
+  - Travis CI
   - ...
 - Get logined user details for each service
 - A prebuilt view controller that handles all logging in for you

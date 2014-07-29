@@ -13,7 +13,7 @@ Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries
   - Travis CI
   - ...
 - Get logined user details for each service
-- A prebuilt view controller that handles all logging in for you
+- User interface for logging in
 
 # Contribution
 

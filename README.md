@@ -17,7 +17,7 @@ Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries
 
 # Contribution
 
-Anyone can easily add their own service by creating AKClient subclass and implementing the abstract methods.
+Anyone can easily add their own service by creating `AKClient` subclass and implementing the abstract methods.
 
 Contact
 ======

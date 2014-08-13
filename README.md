@@ -12,12 +12,13 @@ Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries
   - GitHub
   - Travis CI
   - ...
-- Get logined user details for each service
-- User interface for logging in
+- Request logined user details for each service
+- Dynamic and customizable user interface for logging in
+- Completely extensible
 
 # Contribution
 
-Anyone can easily add their own service by creating `AKClient` subclass and implementing the abstract methods.
+Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass.
 
 Contact
 ======

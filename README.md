@@ -16,9 +16,9 @@ Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries
 - Dynamic and customizable user interface for logging in
 - Completely extensible
 
-# Contribution
+# Contributing
 
-Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass.
+Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either AKGitHubClient or AKCrashlyticsClient for example.
 
 Contact
 ======

@@ -1,7 +1,7 @@
 AuthKit
 =======
 
-AuthKit is to authentication as to what **ARAnalytics** is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the API directly.
+AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the API directly.
 
 Since AFNetworking 1.x and 2.x are incompatible, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a CocoaPod. AuthKit fills this gap of providing AFHTTPNetworkOperationManager classes configured to be used with any API, including GitHub, Crashlytics and more.
 

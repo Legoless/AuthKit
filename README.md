@@ -25,6 +25,11 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 - Generic UIViewController supporting logins
 - Storing login data as K-V
 - Add more services
+  - Pinterest
+  - Facebook
+  - Twitter
+  - App.net
+  - ...
 
 Contact
 ======

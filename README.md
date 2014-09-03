@@ -29,6 +29,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
   - Facebook
   - Twitter
   - App.net
+  - Google
   - ...
 
 Contact

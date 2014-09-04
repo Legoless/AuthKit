@@ -24,12 +24,12 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 
 - Generic UIViewController supporting logins
 - Storing login data as K-V
-- Add more services
+- Add more social services
   - Pinterest
   - Facebook
   - Twitter
   - App.net
-  - Google
+  - Google+
   - ...
 
 Contact

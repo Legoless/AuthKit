@@ -8,9 +8,9 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
 # Features
 
 - Easily login to the next services:
-  - Crashlytics
-  - GitHub
-  - Travis CI
+  - [Crashlytics](http://www.crashlytics.com)
+  - [GitHub](https://github.com)
+  - [Travis CI](http://travis-ci.com)
   - ...
 - Request logined user details for each service
 - Dynamic and customizable user interface for logging in

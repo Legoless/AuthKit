@@ -14,7 +14,7 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
   - ...
 - Request logined user details for each service
 - Dynamic and customizable user interface for logging in
-- Completely extensible
+- Completely extensible clients and UI
 
 # Contributing
 

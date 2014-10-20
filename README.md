@@ -18,7 +18,7 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
 
 # Contributing
 
-Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example.
+Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.
 
 # TODO
 

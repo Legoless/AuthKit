@@ -33,6 +33,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
   - Google+
   - LinkedIn
   - Steam
+  - Evernote
   - ...
 
 Contact

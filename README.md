@@ -30,10 +30,11 @@ Another service can easily be added by creating `AKClient` subclass and implemen
   - Facebook
   - Twitter
   - App.net
-  - Google+
+  - Google+ (Gmail)
   - LinkedIn
   - Steam
   - Evernote
+  - Origin
   - ...
 
 Contact

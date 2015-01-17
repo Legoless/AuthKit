@@ -15,6 +15,7 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
 - Request logined user details for each service
 - Dynamic and customizable user interface for logging in into each service
 - Completely extensible clients and UI
+- iOS 8 support
 
 # Contributing
 

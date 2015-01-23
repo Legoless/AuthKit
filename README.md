@@ -39,6 +39,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
   - Instagram
   - ...
   - ...
+- ReactiveCocoa support
 
 Contact
 ======

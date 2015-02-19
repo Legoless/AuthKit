@@ -40,6 +40,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
   - ...
   - ...
 - ReactiveCocoa support
+- Keychain integration
 
 Contact
 ======

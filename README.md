@@ -25,7 +25,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 
 - Generic `UIViewController` supporting logins
 - Storing login data as Key-Value
-- Keychain support
+- Full Keychain support
 - Add more social services
   - Pinterest
   - Facebook

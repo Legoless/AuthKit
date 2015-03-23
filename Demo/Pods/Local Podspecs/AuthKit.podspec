@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name     = 'AuthKit'
-  s.version  = '0.4.0'
+  s.version  = '0.5.0'
   s.license  = 'MIT'
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'
   s.authors  = { 'Dal Rupnik' => 'legoless@gmail.com' }
-  s.source   = { :git => 'https://github.com/legoless/AuthKit.git', :tag => "0.4.0" }
+  s.source   = { :git => 'https://github.com/legoless/AuthKit.git', :tag => "0.5.0" }
   s.platform = :ios, '7.0'
   s.requires_arc = true
  
@@ -19,6 +19,15 @@ Pod::Spec.new do |s|
     
     ss.dependency 'AFNetworking', '~> 2.0'
     ss.dependency 'JSONModel'
+  end
+  
+  s.subspec 'Interface' do |ss|
+    ss.source_files = 'AuthKit/Interface/*.{h,m}'
+    
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AKPickerView'
+    ss.dependency 'Haystack'
+    ss.dependency 'PureLayout'
   end
 
   s.subspec 'GitHub' do |ss|

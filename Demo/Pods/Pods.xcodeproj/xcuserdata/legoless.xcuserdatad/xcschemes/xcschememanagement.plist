@@ -9,12 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-AKPickerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-AuthKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Haystack.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JSONModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>441973329C054DEF81C6AB9B</key>
+		<key>1DC0504214C8A6AC8526F3B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6DDE1311ADB942B581DD71B9</key>
+		<key>1F2B5A3E621D733184517BC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA88A161415542B99AB3D2C9</key>
+		<key>2E024593E3C6600F77C0D00C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DC2C96997B094AFF9DEBA936</key>
+		<key>44A9D6F1642D07DB7F39C933</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC98EA3B1CDD76DE011C0392</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C16E7C01C8C33AF23B50C9A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E854C787136062383613A6FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

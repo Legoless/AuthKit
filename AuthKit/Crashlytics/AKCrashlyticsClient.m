@@ -20,6 +20,11 @@
 
 @implementation AKCrashlyticsClient
 
+- (NSString *)sourceName
+{
+    return @"Crashlytics";
+}
+
 - (void)setAccessToken:(NSString *)accessToken
 {
     _accessToken = accessToken;

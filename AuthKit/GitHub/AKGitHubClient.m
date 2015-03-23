@@ -23,6 +23,11 @@
 
 @implementation AKGitHubClient
 
+- (NSString *)sourceName
+{
+    return @"GitHub";
+}
+
 - (BOOL)isAuthorized
 {
     return ([self.accessToken length] > 0);

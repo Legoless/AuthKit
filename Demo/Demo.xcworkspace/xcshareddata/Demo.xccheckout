@@ -10,29 +10,29 @@
 	<string>Demo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>94B3C7D8-9009-4E2F-965C-319F1DB65463</key>
+		<key>0727F79807594F8642D296F9BE77F6EE9FEBCE4D</key>
 		<string>https://github.com/Legoless/AuthKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Demo/Demo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>94B3C7D8-9009-4E2F-965C-319F1DB65463</key>
+		<key>0727F79807594F8642D296F9BE77F6EE9FEBCE4D</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Legoless/AuthKit.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>94B3C7D8-9009-4E2F-965C-319F1DB65463</string>
+	<string>0727F79807594F8642D296F9BE77F6EE9FEBCE4D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>94B3C7D8-9009-4E2F-965C-319F1DB65463</string>
+			<string>0727F79807594F8642D296F9BE77F6EE9FEBCE4D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AuthKit</string>
 		</dict>

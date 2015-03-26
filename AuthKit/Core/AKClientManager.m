@@ -40,6 +40,38 @@
     return _sources;
 }
 
+/*!
+ * Returns registered login source by name
+ */
+- (AKClient<AKLoginSource> *)loginSourceWithName:(NSString *)name
+{
+    for (id object in self.sources)
+    {
+        if ([object respondsToSelector:@selector(sourceName)] && [[object sourceName] isEqualToString:name])
+        {
+            return object;
+        }
+    }
+    
+    return nil;
+}
+
+/*!
+ * Returns login source by class
+ */
+- (AKClient *)loginSourceWithClass:(Class)class
+{
+    for (id object in self.sources)
+    {
+        if ([object isKindOfClass:class])
+        {
+            return object;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)addLoginSource:(id <AKLoginSource>)source
 {
     [self.sources addObject:source];

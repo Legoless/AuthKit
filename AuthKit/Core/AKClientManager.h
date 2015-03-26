@@ -6,6 +6,7 @@
 
 #import "AKLoginSource.h"
 #import "AKOAuthSource.h"
+#import "AKClient.h"
 
 /*!
  * Manager of clients per application, supports multiple login sources
@@ -15,6 +16,16 @@
 @property (nonatomic, readonly) NSArray* loginSources;
 
 /*!
+ * Returns registered login source by name
+ */
+- (AKClient<AKLoginSource> *)loginSourceWithName:(NSString *)name;
+
+/*!
+ * Returns login source by class
+ */
+- (AKClient *)loginSourceWithClass:(Class)class;
+
+/*!
  * Singleton access to shared manager
  */
 + (instancetype)sharedManager;
@@ -22,7 +33,7 @@
 /*!
  * Adds login source
  */
-- (void)addLoginSource:(id<AKLoginSource>)source;
+- (void)addLoginSource:(AKClient<AKLoginSource> *)source;
 
 /*!
  * Initializes the manager and setups login sources, call after login sources are set

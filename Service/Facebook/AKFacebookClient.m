@@ -105,6 +105,7 @@
     }
 
     // If the session was opened successfully
+    // If the session was opened successfully
     if (error && state != FBSessionStateOpen)
     {
         [FBSession.activeSession closeAndClearTokenInformation];
@@ -112,16 +113,17 @@
         if (self.failureBlock)
         {
             self.failureBlock (nil, error);
+            
+            self.successBlock = nil;
+            self.failureBlock = nil;
         }
     }
     else if ( (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended) && (self.successBlock) )
     {
         self.successBlock(session);
+        
+        self.failureBlock = nil;
     }
-    
-    self.failureBlock = nil;
-    self.successBlock = nil;
-    
 }
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

@@ -1,0 +1,112 @@
+{
+  "name": "AuthKit",
+  "version": "0.5.0",
+  "license": "MIT",
+  "summary": "All in one solution for web service authentication.",
+  "homepage": "https://github.com/legoless/AuthKit.git",
+  "authors": {
+    "Dal Rupnik": "legoless@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/legoless/AuthKit.git",
+    "tag": "0.5.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "public_header_files": "AuthKit/*.h",
+  "source_files": "AuthKit/AuthKit.h",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "AuthKit/Core/*.{h,m}",
+      "dependencies": {
+        "AFNetworking": [
+          "~> 2.0"
+        ],
+        "JSONModel": [
+
+        ]
+      }
+    },
+    {
+      "name": "Persistence",
+      "source_files": "AuthKit/Persistence/*.{h,m}",
+      "dependencies": {
+        "AuthKit/Core": [
+
+        ],
+        "SSKeychain": [
+
+        ],
+        "Haystack": [
+
+        ]
+      }
+    },
+    {
+      "name": "OAuth",
+      "source_files": "AuthKit/OAuth/*.{h,m}",
+      "dependencies": {
+        "AuthKit/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Interface",
+      "source_files": "AuthKit/Interface/*.{h,m}",
+      "dependencies": {
+        "AuthKit/Core": [
+
+        ],
+        "AKPickerView": [
+
+        ],
+        "Haystack": [
+
+        ],
+        "PureLayout": [
+
+        ]
+      }
+    },
+    {
+      "name": "GitHub",
+      "source_files": "Service/GitHub/*.{h,m}",
+      "dependencies": {
+        "AuthKit/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Crashlytics",
+      "source_files": "Service/Crashlytics/*.{h,m}",
+      "dependencies": {
+        "AuthKit/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Facebook",
+      "source_files": "Service/Facebook/*.{h,m}",
+      "dependencies": {
+        "Facebook-iOS-SDK": [
+          "~> 3.x"
+        ]
+      }
+    },
+    {
+      "name": "Google",
+      "source_files": "Service/Google/*.{h,m}",
+      "dependencies": {
+        "googleplus-ios-sdk": [
+
+        ]
+      }
+    }
+  ]
+}

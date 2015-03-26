@@ -6,21 +6,31 @@ The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely p
 Writing Auto Layout code from scratch isn't easy. PureLayout provides a fully capable and developer-friendly interface for Auto Layout. It is designed for clarity and simplicity, and takes inspiration from the AutoLayout UI options available in Interface Builder while delivering far more flexibility. The API is also highly efficient, as it adds only a thin layer of third party code and is engineered for maximum performance.
 
 ## API Cheat Sheet
-This is just a handy overview of the core API methods. Explore the [header files](Source) for the full API and documentation. A couple of notes:
+This is just a handy overview of the core API methods. Explore the [header files](PureLayout/PureLayout) for the full API, and find the complete documentation above the implementation of each method in the corresponding .m file. A couple of notes:
 
-*	*All of the API methods begin with `auto...` for easy autocompletion in Xcode!*
-*	*All methods that generate constraints also automatically add the constraint(s) to the correct view, then return the newly created constraint(s) for you to optionally store for later adjustment or removal.*
-*	*Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.*
+*	All of the public API methods are namespaced with the prefix `auto...`, which also makes it easy for Xcode to autocomplete as you type.
+*	Methods that create constraints also automatically install (activate) the constraint(s), then return the new constraint(s) for you to optionally store for later adjustment or removal.
+*	Many methods below also have a variant which includes a `relation:` parameter to make the constraint an inequality.
 
-**`ALAttribute`**
+### Attributes
 
-Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttributes.png) used throughout the API.
+PureLayout defines view attributes that are used to create auto layout constraints. Here is an [illustration of the most common attributes](Images/PureLayout-CommonAttributes.png).
 
-**[`UIView`/`NSView`](Source/ALView%2BPureLayout.h)**
+There are 5 specific attribute types, which are used throughout most of the API:
+
+* `ALEdge`
+* `ALDimension`
+* `ALAxis`
+* `ALMargin` *available in iOS 8.0 and higher only*
+* `ALMarginAxis` *available in iOS 8.0 and higher only*
+
+Additionally, there is one generic attribute type, `ALAttribute`, which is effectively a union of all the specific types. You can think of this as the "supertype" of all of the specific attribute types, which means that it is always safe to cast a specific type to the generic `ALAttribute` type. (Note that the reverse is not true -- casting a generic ALAttribute to a specific attribute type is unsafe!)
+
+### [`UIView`/`NSView`](PureLayout/PureLayout/ALView%2BPureLayout.h)
 
 	+ autoCreateConstraintsWithoutInstalling:
     + autoSetPriority:forConstraints:
-	+ autoSetIdentifier:forConstraints:
+	+ autoSetIdentifier:forConstraints: // iOS 7.0+, OS X 10.9+ only
     - autoSetContent(CompressionResistance|Hugging)PriorityForAxis:
     - autoCenterInSuperview:
     - autoAlignAxisToSuperviewAxis:
@@ -37,26 +47,27 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
     - autoConstrainAttribute:toAttribute:ofView:(withOffset:|withMultiplier:)
     - autoPinTo(Top|Bottom)LayoutGuideOfViewController:withInset: // iOS only
 
-**[`NSArray`](Source/NSArray%2BPureLayout.h)**
+### [`NSArray`](PureLayout/PureLayout/NSArray%2BPureLayout.h)
 
 	// Arrays of Constraints
 	- autoInstallConstraints
     - autoRemoveConstraints
-    - autoIdentifyConstraints: // iOS 7.0+ only
+    - autoIdentifyConstraints: // iOS 7.0+, OS X 10.9+ only
 	
 	// Arrays of Views
     - autoAlignViewsToEdge:
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
     - autoSetViewsDimension:toSize:
-    - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)(matchedSizes:)alignment:
-    - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
+	- autoSetViewsDimensionsToSize:
+    - autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
+    - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
 
-**[`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)**
+### [`NSLayoutConstraint`](PureLayout/PureLayout/NSLayoutConstraint%2BPureLayout.h)
 
 	- autoInstall
     - autoRemove
-    - autoIdentify: // iOS 7.0+ only
+    - autoIdentify: // iOS 7.0+, OS X 10.9+ only
 
 ## Setup
 *Note: PureLayout requires a minimum deployment target of iOS 6.0 or OS X 10.7*
@@ -67,23 +78,36 @@ Here is an [illustration of the ALAttribute constants](Images/PureLayout-ALAttri
     	pod 'PureLayout'
 
 2.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
-3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
+3.	Import the `PureLayout.h` header.
 
-That's it - now go write some beautifully simple Auto Layout code!
+That's it - now go write some beautiful Auto Layout code!
+
+### Using [Carthage](https://github.com/Carthage/Carthage)
+1.  Add the `smileyborg/PureLayout` project to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+
+        github "smileyborg/PureLayout"
+
+2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the iOS and/or Mac frameworks into your project.
+3.  Import the framework's umbrella header (iOS: `#import <PureLayout_iOS/PureLayout_iOS.h>`, OS X: `#import <PureLayout_Mac/PureLayout_Mac.h>`) or simply `@import` the framework name if using Modules.
+
+That's it - now go write some beautiful Auto Layout code!
 
 ### Manually from GitHub
-1.	Download the source files in the [Source directory](Source).
+1.	Download the source files in the [PureLayout subdirectory](PureLayout/PureLayout).
 2.	Add the source files to your Xcode project.
-3.	`#import "PureLayout.h"` wherever you want to use the API. *(Hint: add this import to your prefix header (.pch) file so that the API is automatically available everywhere!)*
+3.	Import the `PureLayout.h` header.
 
-That's it - now go write some beautifully simple Auto Layout code!
+That's it - now go write some beautiful Auto Layout code!
+
+### App Extensions
+When using PureLayout in an App Extension, define the preprocessor macro `PURELAYOUT_APP_EXTENSIONS` in the Build Settings of your App Extension's target to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
 
 ### Releases
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
 
 ## Usage
 ### Example Project
-Check out the [example project](Example) included in the repository (requires Xcode 6 or higher). It contains iOS and OS X demos of the API being used in various scenarios.
+Open the project included in the repository (requires Xcode 6 or higher). It contains [iOS](PureLayout/Example-iOS) (`Example-iOS` scheme) and [OS X](PureLayout/Example-Mac) (`Example-Mac` scheme) demos of the library being used in various scenarios.
 
 On iOS, you can use different device simulators and rotate the device to see the constraints in action (as well as toggle the taller in-call status bar in the iOS Simulator).
 
@@ -95,7 +119,7 @@ Check out some [Tips and Tricks](https://github.com/smileyborg/PureLayout/wiki/T
 ## PureLayout vs. the rest
 An overview of the Auto Layout options available, ordered from the lowest- to highest-level of abstraction.
 
-*	Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/doc/uid/TP40010628-CH1-SW18)
+*	Apple [NSLayoutConstraint SDK API](https://developer.apple.com/library/ios/documentation/AppKit/Reference/NSLayoutConstraint_Class/index.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:)
  	*	Pros: Raw power
 	*	Cons: Extremely verbose, tedious to write, difficult to read
 *	Apple [Visual Format Language](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage/VisualFormatLanguage.html)
@@ -105,18 +129,18 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 	*	Pros: Visual, simple
 	* 	Cons: Difficult for complex layouts, cannot dynamically set constraints at runtime, encourages hardcoded magic numbers, not always WYSIWYG
 *	**PureLayout**
-	*	Pros: Simple, efficient, minimal third party code, consistent with Apple API style, compatible with Objective-C and Swift codebases
+	*	Pros: Simple, efficient, minimal third party code, consistent with Cocoa API style, compatible with Objective-C and Swift codebases
 	*	Cons: Not the most concise expression of layout code
-*	High-level Auto Layout Libraries/DSLs ([Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
 	*	Pros: Very clean, concise, and convenient 
-	*	Cons: Overloaded Objective-C syntax (Swift incompatible), heavier dependency on third party code, difficult to mix with SDK APIs
+	*	Cons: Unique API style is foreign to Cocoa APIs, mixed compatibility with Objective-C & Swift, greater dependency on third party code
+	
+PureLayout takes a balanced approach to Auto Layout that makes it well suited for any project.
 
 ## Problems, Suggestions, Pull Requests?
-Bring 'em on! :)
+Please open a [new Issue here](https://github.com/smileyborg/PureLayout/issues/new) if you run into an issue, have a feature request, or want to share a comment. Note that general Auto Layout questions should be asked on [Stack Overflow](http://stackoverflow.com).
 
-If you're considering taking on significant changes or additions to the project, it's always a good idea to communicate in advance (open a [new Issue here](https://github.com/smileyborg/PureLayout/issues/new)). This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
-
-I'm especially interested in hearing about any common use cases that this API does not currently address. Feel free to add feature requests (and view current work in progress) on the [Feature Requests](https://github.com/smileyborg/PureLayout/wiki/Feature-Requests) page of the wiki for this project.
+If you're considering taking on significant changes or additions to the project, please communicate in advance by opening a new Issue. This allows everyone to get onboard with upcoming changes, ensures that changes align with the project's design philosophy, and avoids duplicated work.
 
 ## Meta
 Designed & maintained by Tyler Fox ([@smileyborg](https://twitter.com/smileyborg)). Distributed with the MIT license.

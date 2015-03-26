@@ -25,7 +25,7 @@
  *  @param source             AKLoginSource that failed authentication
  *  @param error              NSError object
  */
-- (void)authViewController:(AKAuthViewController *)authViewController authenticationFailedForSource:(AKClient<AKLoginSource> *)client error:(NSError *)error;
+- (void)authViewController:(AKAuthViewController *)authViewController authenticationFailedForSource:(AKClient<AKLoginSource> *)client error:(NSError *)error; 
 
 /*!
  *  Called when user enters correct credentials to a login service

@@ -8,13 +8,7 @@
 
 #import "AKClient.h"
 
-/*!
- * Most used string constants
- */
-NSString *const AKUsername = @"kAKUsernameKey";
-NSString *const AKPassword = @"kAKPasswordKey";
-NSString *const AKAccessToken = @"kAKAccessTokenKey";
-NSString *const AKServerURL = @"kAKServerURL";
+
 
 @interface AKClient ()
 
@@ -24,6 +18,13 @@ NSString *const AKServerURL = @"kAKServerURL";
 @end
 
 @implementation AKClient
+
+#pragma mark - Getters and Setters
+
+- (AKSessionState)state
+{
+    return AKSessionStateClosed;
+}
 
 #pragma mark - Initializers
 
@@ -50,6 +51,7 @@ NSString *const AKServerURL = @"kAKServerURL";
         }
         
         self.manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:self.baseURL];
+        self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL];
     }
     
     return self;
@@ -60,6 +62,11 @@ NSString *const AKServerURL = @"kAKServerURL";
 - (AFHTTPRequestOperationManager *)managerCopy
 {
     return [self.manager copy];
+}
+
+- (AFHTTPSessionManager *)sessionManagerCopy
+{
+    return [self.sessionManager copy];
 }
 
 #pragma mark - Convenience methods
@@ -73,12 +80,12 @@ NSString *const AKServerURL = @"kAKServerURL";
 #pragma mark - Abstract methods
 
 //
-// Methods below should be subclassed
+// Methods below should be implemented in subclasses
 //
 
-- (BOOL)isAuthorized
+- (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    return NO;
+    [self loginWithDetails:nil success:success failure:failure];
 }
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
@@ -89,6 +96,11 @@ NSString *const AKServerURL = @"kAKServerURL";
 - (void)userWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
     [NSException raise:@"Not implemented exception" format:@"userWithSuccess method not implemented in %@", [self class]];
+}
+
+- (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
+{
+    [NSException raise:@"Not implemented exception" format:@"logoutWithSuccess method not implemented in %@", [self class]];
 }
 
 @end

@@ -8,20 +8,18 @@
 
 #import <AFNetworking/AFNetworking.h>
 
-/*!
- * Most used string constants
- */
-extern NSString *const AKUsername;
-extern NSString *const AKPassword;
-extern NSString *const AKAccessToken;
-extern NSString *const AKServerURL;
+#import "AKDefines.h"
 
-typedef void (^AKSuccessBlock)(id details);
-typedef void (^AKFailureBlock)(id responseObject, NSError* error);
-
+@class AKUser;
 @class AFHTTPRequestOperationManager;
 
+
 @interface AKClient : NSObject
+
+/*!
+ * Will be called each time session state has changed
+ */
+@property (nonatomic, copy) AKSessionChangedBlock sessionChangedHandler;
 
 /*!
  * AFNetworking operation manager used by the class
@@ -31,6 +29,7 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  *
  */
 @property (nonatomic, strong) AFHTTPRequestOperationManager* manager;
+@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 /*!
  * Contains parameters which are needed to access the API
@@ -45,7 +44,7 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
 /*!
  * Returns YES, when AKClient is allowed to make authorized requests
  */
-@property (nonatomic, readonly) BOOL isAuthorized;
+@property (nonatomic, readonly) AKSessionState state;
 
 /*!
  * Designated initializer for any AuthKit client. Each API requires
@@ -53,7 +52,7 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  *
  * @param NSDictionary API parameters
  */
-- (id)initWithAccessParameters:(NSDictionary *)parameters;
+- (instancetype)initWithAccessParameters:(NSDictionary *)parameters;
 
 /*!
  * Abstract login details, any number of parameters could be provided here.
@@ -67,6 +66,11 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 /*!
+ * Logs user out of the service (if logined)
+ */
+- (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
+
+/*!
  * Once logged in, this method returns default user details for currently logged in user.
  */
 - (void)userWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
@@ -76,5 +80,11 @@ typedef void (^AKFailureBlock)(id responseObject, NSError* error);
  * AFHTTPRequestOperationManager. This enables AKClient subclasses to expose direct working with APIs.
  */
 - (AFHTTPRequestOperationManager *)managerCopy;
+
+/*!
+ * Returns new instance of connection manager configured to work with the API, usually AFNetworking
+ * AFHTTPSessionManager. This enables AKClient subclasses to expose directly connecting to service APIs.
+ */
+- (AFHTTPSessionManager *)sessionManagerCopy;
 
 @end

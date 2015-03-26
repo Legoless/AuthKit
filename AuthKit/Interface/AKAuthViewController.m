@@ -250,7 +250,7 @@
     [self.closeButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
     
     //
-    // Header image view
+    // Header image vi ew
     //
     
     [self.headerImageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(70.0, 20.0, 0.0, 20.0) excludingEdge:ALEdgeBottom];

@@ -1,46 +1,65 @@
 PODS:
-  - AFNetworking (2.4.1):
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection (= 2.5.1)
+    - AFNetworking/NSURLSession (= 2.5.1)
+    - AFNetworking/Reachability (= 2.5.1)
+    - AFNetworking/Security (= 2.5.1)
+    - AFNetworking/Serialization (= 2.5.1)
+    - AFNetworking/UIKit (= 2.5.1)
+  - AFNetworking/NSURLConnection (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - AKPickerView (0.1.2)
+  - AKPickerView (0.2.4)
   - AuthKit (0.5.0):
-    - AuthKit/Core
-    - AuthKit/Crashlytics
-    - AuthKit/GitHub
-    - AuthKit/Interface
+    - AuthKit/Core (= 0.5.0)
+    - AuthKit/Crashlytics (= 0.5.0)
+    - AuthKit/Facebook (= 0.5.0)
+    - AuthKit/GitHub (= 0.5.0)
+    - AuthKit/Google (= 0.5.0)
+    - AuthKit/Interface (= 0.5.0)
+    - AuthKit/OAuth (= 0.5.0)
+    - AuthKit/Persistence (= 0.5.0)
   - AuthKit/Core (0.5.0):
     - AFNetworking (~> 2.0)
     - JSONModel
   - AuthKit/Crashlytics (0.5.0):
     - AuthKit/Core
+  - AuthKit/Facebook (0.5.0):
+    - Facebook-iOS-SDK (~> 3.x)
   - AuthKit/GitHub (0.5.0):
     - AuthKit/Core
+  - AuthKit/Google (0.5.0):
+    - googleplus-ios-sdk
   - AuthKit/Interface (0.5.0):
     - AKPickerView
     - AuthKit/Core
     - Haystack
     - PureLayout
-  - Haystack (0.5.4)
-  - JSONModel (1.0.1)
-  - PureLayout (2.0.0)
+  - AuthKit/OAuth (0.5.0):
+    - AuthKit/Core
+  - AuthKit/Persistence (0.5.0):
+    - AuthKit/Core
+    - Haystack
+    - SSKeychain
+  - Bolts (1.1.4)
+  - Facebook-iOS-SDK (3.23.2):
+    - Bolts (~> 1.0)
+  - googleplus-ios-sdk (1.7.1)
+  - Haystack (0.8.0)
+  - JSONModel (1.0.2)
+  - PureLayout (2.0.5)
+  - SSKeychain (1.2.2)
 
 DEPENDENCIES:
   - AuthKit (from `../AuthKit.podspec`)
@@ -50,11 +69,15 @@ EXTERNAL SOURCES:
     :path: ../AuthKit.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  AKPickerView: 8a799927f1fef3f2faa8cdbb998884da8aa4eaef
-  AuthKit: 6a031575c8c68780fb6774fb5ef3507c5147b6fa
-  Haystack: d2d45ec4298bdf2fff687c970a245905905c8c31
-  JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
-  PureLayout: 4d7d1324157670cfadd94f216909c0d067b28448
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  AKPickerView: e999492a4fff7516d60ede4dc286dd1086871fb3
+  AuthKit: c93fa7aa19233c7d40f29830b399130893f4018a
+  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  Facebook-iOS-SDK: cd87f0b2f0c1d9574b44e8fa2baacc275524bac3
+  googleplus-ios-sdk: b0f6cd8aa29c51d0048cace8dc3bd8f4ae0806bb
+  Haystack: fe02b6661942b3d36ebdcddc4eae52cac391b6ae
+  JSONModel: cbdef0fdff1cc70e913a860861d3072860efd3a1
+  PureLayout: 63a3257320223e8edddcd3afb407445f85a6bf74
+  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.36.0

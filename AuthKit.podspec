@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files = 'AuthKit/Core/*.{h,m}'
     
-    ss.dependency 'AFNetworking', '~> 2.0'
+    ss.dependency 'AFNetworking', '~> 2.x'
     ss.dependency 'JSONModel'
   end
 
@@ -60,11 +60,15 @@ Pod::Spec.new do |s|
     ss.source_files = 'Service/Facebook/*.{h,m}'
 
     ss.dependency 'Facebook-iOS-SDK', '~> 3.x'
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
   end
 
   s.subspec 'Google' do |ss|
     ss.source_files = 'Service/Google/*.{h,m}'
 
     ss.dependency 'googleplus-ios-sdk'
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
   end
 end

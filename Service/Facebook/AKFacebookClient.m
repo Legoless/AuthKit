@@ -7,6 +7,12 @@
 
 @interface AKFacebookClient ()
 
+//
+// Used to store pointers to blocks
+//
+@property (nonatomic, copy) AKSuccessBlock successBlock;
+@property (nonatomic, copy) AKFailureBlock failureBlock;
+
 @end
 
 @implementation AKFacebookClient
@@ -27,19 +33,37 @@
     return [self initWithAccessParameters:@{ AKScopes : permissions }];
 }
 
+#pragma mark - AKLoginSource
+
+- (NSString *)sourceName
+{
+    return @"Facebook";
+}
+
 #pragma mark - AKOAuthSource
 
-- (void)login
+- (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
+    [self loginWithDetails:nil success:success failure:failure];
+}
+
+- (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
+{
+    self.successBlock = success;
+    self.failureBlock = failure;
+    
     [FBSession openActiveSessionWithReadPermissions:self.accessParameters[AKScopes] allowLoginUI:YES completionHandler:
-                                          ^(FBSession *session, FBSessionState state, NSError *error)
+     ^(FBSession *session, FBSessionState state, NSError *error)
     {
         [self sessionStateChanged:session state:state error:error];
     }];
 }
 
-- (void)loginWithPermissions:(NSArray *)permissions
+- (void)loginWithWritePermissions:(NSArray *)permissions success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
+    self.successBlock = success;
+    self.failureBlock = failure;
+    
     [FBSession openActiveSessionWithPublishPermissions:permissions defaultAudience:self.defaultAudience allowLoginUI:YES completionHandler:
             ^(FBSession *session, FBSessionState state, NSError *error)
     {
@@ -84,15 +108,27 @@
     if (error && state != FBSessionStateOpen)
     {
         [FBSession.activeSession closeAndClearTokenInformation];
-
-        return;
+        
+        if (self.failureBlock)
+        {
+            self.failureBlock (nil, error);
+        }
     }
+    else if ( (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended) && (self.successBlock) )
+    {
+        self.successBlock(session);
+    }
+    
+    self.failureBlock = nil;
+    self.successBlock = nil;
+    
 }
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
+
 
 #pragma mark - Helper methods
 

@@ -19,6 +19,6 @@
 /*!
  * Re-logins with additional permissions if required (write permissions)
  */
-- (void)loginWithPermissions:(NSArray *)permissions;
+- (void)loginWithWritePermissions:(NSArray *)permissions success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 @end

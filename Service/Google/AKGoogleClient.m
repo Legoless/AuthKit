@@ -93,6 +93,13 @@
     return [self initWithAccessParameters:parameters];
 }
 
+#pragma mark - AKLoginSource
+
+- (NSString *)sourceName
+{
+    return @"Google";
+}
+
 #pragma mark - AKClient
 
 - (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
@@ -101,6 +108,11 @@
 }
 
 #pragma mark - AKOAuthSource
+
+- (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
+{
+    [self loginWithDetails:nil success:success failure:failure];
+}
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
@@ -120,6 +132,11 @@
     return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
+- (void)handleDidBecomeActive
+{
+    // Google Plus SDK actually does not require this call
+}
+
 #pragma mark - GPPSignInDelegate
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
@@ -136,6 +153,11 @@
 
     self.successBlock = nil;
     self.failureBlock = nil;
+    
+    if (self.sessionChangedHandler)
+    {
+        self.sessionChangedHandler(self.state, error);
+    }
 }
 
 @end

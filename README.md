@@ -9,7 +9,9 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
 
 - Easily login to the next services:
   - [Crashlytics](http://www.crashlytics.com)
+  - [Facebook](https://www.facebook.com)
   - [GitHub](https://github.com)
+  - [Google+](https://plus.google.com)
   - [Travis CI](http://travis-ci.com)
   - ...
 - Request logined user details for each service

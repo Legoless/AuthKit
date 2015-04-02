@@ -14,10 +14,10 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
   - [Google+](https://plus.google.com)
   - [Travis CI](http://travis-ci.com)
   - ...
-- Request logined user details for each service
-- Dynamic and customizable user interface for logging in into each service
-- Completely extensible clients and UI customizations
-- **A single, simple API to work with every service**
+- Request logined user details for each service.
+- Dynamic and customizable user interface for logging in into each service.
+- Completely extensible clients and UI customizations.
+- **A single, simple API to work with every service.**
 
 # Contributing
 

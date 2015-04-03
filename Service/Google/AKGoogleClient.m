@@ -46,6 +46,16 @@
     self.googleService.shouldFetchGoogleUserEmail = shouldFetchGoogleUserEmail;
 }
 
+- (BOOL)shouldFetchGoogleUserID
+{
+    return self.googleService.shouldFetchGoogleUserID;
+}
+
+- (void)setShouldFetchGoogleUserID:(BOOL)shouldFetchGoogleUserID
+{
+    self.googleService.shouldFetchGoogleUserID = shouldFetchGoogleUserID;
+}
+
 #pragma mark - Initializers
 
 - (instancetype)initWithAccessParameters:(NSDictionary *)parameters

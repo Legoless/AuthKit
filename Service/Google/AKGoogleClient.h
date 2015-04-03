@@ -13,6 +13,7 @@
 //
 @property (nonatomic, assign) BOOL shouldFetchGooglePlusUser;
 @property (nonatomic, assign) BOOL shouldFetchGoogleUserEmail;
+@property (nonatomic, assign) BOOL shouldFetchGoogleUserID;
 
 - (instancetype)initWithClientId:(NSString *)clientId;
 - (instancetype)initWithClientId:(NSString *)clientId scopes:(NSArray *)scopes;

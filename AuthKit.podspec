@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'AuthKit'
-  s.version  = '0.6.2'
+  s.version  = '0.6.3'
   s.license  = 'MIT'
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'

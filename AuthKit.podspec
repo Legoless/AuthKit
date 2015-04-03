@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'AuthKit'
-  s.version  = '0.6.1'
+  s.version  = '0.6.2'
   s.license  = 'MIT'
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
   s.ios.deployment_target = '7.0'
 
-  s.public_header_files = 'AuthKit/*.h'\
+  s.public_header_files = 'AuthKit/*.h'
   s.source_files = 'AuthKit/AuthKit.h'
 
   s.subspec 'Core' do |ss|

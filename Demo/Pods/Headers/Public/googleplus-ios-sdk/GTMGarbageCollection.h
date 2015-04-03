@@ -1,1 +1,4 @@
-../../../googleplus-ios-sdk/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework/Versions/A/Headers/GTMGarbageCollection.h
+//
+// This file previously included utility functions for working
+// with Garbage Collection on Mac OS X.
+//

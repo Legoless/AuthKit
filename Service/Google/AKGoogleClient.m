@@ -141,16 +141,19 @@
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
-    if (error && self.failureBlock)
-    {
-        self.failureBlock(nil, error);
-    }
-
     if (auth && self.successBlock)
     {
         self.successBlock(auth);
     }
-
+    else if (error && self.failureBlock)
+    {
+        self.failureBlock(nil, error);
+    }
+    else if (self.failureBlock)
+    {
+        self.failureBlock(nil, nil);
+    }
+    
     self.successBlock = nil;
     self.failureBlock = nil;
     
@@ -158,6 +161,7 @@
     {
         self.sessionChangedHandler(self.state, error);
     }
+
 }
 
 @end

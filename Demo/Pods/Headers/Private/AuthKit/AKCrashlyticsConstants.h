@@ -1,1 +1,2 @@
-../../../../../Service/Crashlytics/AKCrashlyticsConstants.h
+extern NSString *const AKCrashlyticsServerDefaultURL;
+extern NSString *const AKCrashlyticsDeveloperToken;

@@ -1,1 +1,1 @@
-#define BOLTS_VERSION @"1.1.4"
+../../../Bolts/Bolts/Common/BoltsVersion.h

@@ -25,7 +25,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 
 # TODO
 
-- Generic `UIViewController` supporting logins
+- Generic `UIViewController` supporting logging in
 - Storing login data as Key-Value
 - Full Keychain support
 - Add more social services

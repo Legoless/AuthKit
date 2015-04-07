@@ -1,3 +1,1 @@
-#import "AKCrashlyticsConstants.h"
-#import "AKCrashlyticsClient.h"
-#import "AKCrashlyticsUser.h"
+../../../../../Service/Crashlytics/AKCrashlytics.h

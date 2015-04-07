@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'AuthKit'
-  s.version  = '0.6.4'
+  s.version  = '0.7.0'
   s.license  = 'MIT'
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'
@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
   s.subspec 'Facebook' do |ss|
     ss.source_files = 'Service/Facebook/*.{h,m}'
 
-    ss.dependency 'Facebook-iOS-SDK', '~> 3.x'
+    ss.dependency 'Facebook-iOS-SDK/LoginKit'
     ss.dependency 'AuthKit/Core'
     ss.dependency 'AuthKit/OAuth'
   end

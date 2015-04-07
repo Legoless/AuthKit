@@ -1,6 +1,6 @@
 {
   "name": "AuthKit",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "license": "MIT",
   "summary": "All in one solution for web service authentication.",
   "homepage": "https://github.com/legoless/AuthKit.git",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/legoless/AuthKit.git",
-    "tag": "0.5.0"
+    "tag": "0.7.0"
   },
   "platforms": {
     "ios": "7.0"
@@ -23,7 +23,7 @@
       "source_files": "AuthKit/Core/*.{h,m}",
       "dependencies": {
         "AFNetworking": [
-          "~> 2.0"
+          "~> 2.x"
         ],
         "JSONModel": [
 
@@ -94,8 +94,14 @@
       "name": "Facebook",
       "source_files": "Service/Facebook/*.{h,m}",
       "dependencies": {
-        "Facebook-iOS-SDK": [
-          "~> 3.x"
+        "Facebook-iOS-SDK/LoginKit": [
+
+        ],
+        "AuthKit/Core": [
+
+        ],
+        "AuthKit/OAuth": [
+
         ]
       }
     },
@@ -104,6 +110,12 @@
       "source_files": "Service/Google/*.{h,m}",
       "dependencies": {
         "googleplus-ios-sdk": [
+
+        ],
+        "AuthKit/Core": [
+
+        ],
+        "AuthKit/OAuth": [
 
         ]
       }

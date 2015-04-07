@@ -1,11 +1,1 @@
-//
-//  NSURL+Parameters.h
-//
-
-@import Foundation;
-
-@interface NSURL (Parameters)
-
-- (NSDictionary *)queryParameters;
-
-@end
+../../../Haystack/SDK/Categories/NSURL+Parameters/NSURL+Parameters.h

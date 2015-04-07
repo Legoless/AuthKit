@@ -3,9 +3,3 @@
 //
 
 #import "AKFacebookConstants.h"
-
-
-@implementation AKFacebookConstants {
-
-}
-@end

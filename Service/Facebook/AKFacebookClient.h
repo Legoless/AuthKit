@@ -5,11 +5,8 @@
 #import "AKClient.h"
 #import "AKOAuthSource.h"
 #import "AKLoginSource.h"
-#import <FacebookSDK/FacebookSDK.h>
 
-@interface AKFacebookClient : AKClient <AKOAuthSource, AKLoginSource>
-
-@property (nonatomic, assign) FBSessionDefaultAudience defaultAudience;
+@interface AKFacebookClient : AKClient <AKLoginSource>
 
 /*!
  * When initializing Facebook client, we define basic "Read" permissions.

@@ -2,10 +2,17 @@
 // Created by Dal Rupnik on 23/03/15.
 //
 
-#import <FacebookSDK/FacebookSDK.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKAccessToken.h>
+
 #import "AKFacebookClient.h"
 
 @interface AKFacebookClient ()
+
+/*!
+ *  Stores FBSDKLoginMechanic
+ */
+@property (nonatomic, strong) FBSDKLoginManager* loginManager;
 
 //
 // Used to store pointers to blocks
@@ -19,11 +26,28 @@
 
 #pragma mark - Getters and Setters
 
+- (FBSDKLoginManager *)loginManager
+{
+    if (!_loginManager)
+    {
+        _loginManager = [[FBSDKLoginManager alloc] init];
+    }
+    
+    return _loginManager;
+}
+
 - (AKSessionState)state
 {
-    FBSession *session = [FBSession activeSession];
-
-    return [self sessionStateForFacebookSession:session];
+    FBSDKAccessToken* accessToken = [FBSDKAccessToken currentAccessToken];
+    
+    if (!accessToken)
+    {
+        return AKSessionStateClosed;
+    }
+    else
+    {
+        return AKSessionStateOpen;
+    }
 }
 
 #pragma mark - Initializers
@@ -52,10 +76,9 @@
     self.successBlock = success;
     self.failureBlock = failure;
     
-    [FBSession openActiveSessionWithReadPermissions:self.accessParameters[AKScopes] allowLoginUI:YES completionHandler:
-     ^(FBSession *session, FBSessionState state, NSError *error)
+    [self.loginManager logInWithReadPermissions:self.accessParameters[AKScopes] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
     {
-        [self sessionStateChanged:session state:state error:error];
+        [self sessionStateChanged:result error:error];
     }];
 }
 
@@ -64,52 +87,43 @@
     self.successBlock = success;
     self.failureBlock = failure;
     
-    [FBSession openActiveSessionWithPublishPermissions:permissions defaultAudience:self.defaultAudience allowLoginUI:YES completionHandler:
-            ^(FBSession *session, FBSessionState state, NSError *error)
+    [self.loginManager logInWithPublishPermissions:permissions handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
     {
-        [self sessionStateChanged:session state:state error:error];
+        [self sessionStateChanged:result error:error];
     }];
 }
 
-- (void)setup
+- (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
+    [self.loginManager logOut];
+    
+    if (success)
     {
-        // If there's one, just open the session silently, without showing the user the login UI
-        [FBSession openActiveSessionWithReadPermissions:self.accessParameters[AKScopes] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
-        {
-            // Handler for session state changes
-            // Call this method EACH time the session state changes,
-            //  NOT just when the session open
-            [self sessionStateChanged:session state:state error:error];
-        }];
+        success (nil);
     }
 }
 
-- (void)handleDidBecomeActive
-{
-    [FBAppCall handleDidBecomeActive];
-}
-
-- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState)state error:(NSError *)error
+- (void)sessionStateChanged:(FBSDKLoginManagerLoginResult *)loginResult error:(NSError *)error
 {
     //
     // Get session state
     //
 
-    AKSessionState sessionState = [self sessionStateForFacebookSession:session];
-
+    AKSessionState sessionState = self.state;
+    
+    if (error)
+    {
+        sessionState = AKSessionStateClosedLoginFailed;
+    }
+    
     if (self.sessionChangedHandler)
     {
         self.sessionChangedHandler(sessionState, error);
     }
 
     // If the session was opened successfully
-    // If the session was opened successfully
-    if (error && state != FBSessionStateOpen)
+    if (error)
     {
-        [FBSession.activeSession closeAndClearTokenInformation];
-        
         if (self.failureBlock)
         {
             self.failureBlock (nil, error);
@@ -118,34 +132,14 @@
             self.failureBlock = nil;
         }
     }
-    else if ( (state == FBSessionStateOpen || state == FBSessionStateOpenTokenExtended) && (self.successBlock) )
+    else if (self.successBlock)
     {
-        self.successBlock(session);
+        self.successBlock(loginResult);
+        
+        self.successBlock = nil;
         
         self.failureBlock = nil;
     }
-}
-
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
-}
-
-
-#pragma mark - Helper methods
-
-- (AKSessionState)sessionStateForFacebookSession:(FBSession *)session
-{
-    if (session.state == FBSessionStateClosedLoginFailed)
-    {
-        return AKSessionStateClosedLoginFailed;
-    }
-    else if (session.state == FBSessionStateOpen || session.state == FBSessionStateOpenTokenExtended)
-    {
-        return AKSessionStateOpen;
-    }
-
-    return AKSessionStateClosed;
 }
 
 @end

@@ -6,7 +6,7 @@
 #import "AKOAuthSource.h"
 #import "AKLoginSource.h"
 
-@interface AKFacebookClient : AKClient <AKLoginSource>
+@interface AKFacebookClient : AKClient <AKLoginSource, AKOAuthSource>
 
 /*!
  * When initializing Facebook client, we define basic "Read" permissions.

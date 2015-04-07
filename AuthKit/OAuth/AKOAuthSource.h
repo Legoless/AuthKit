@@ -18,6 +18,8 @@
  * Should usually be run in app delegate
  */
 
+@optional
+
 - (void)handleDidBecomeActive;
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;

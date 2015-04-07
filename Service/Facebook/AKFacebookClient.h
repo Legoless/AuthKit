@@ -9,6 +9,12 @@
 @interface AKFacebookClient : AKClient <AKLoginSource, AKOAuthSource>
 
 /*!
+ *  Auto updates Facebook profile
+ */
+@property (nonatomic, assign) BOOL shouldAutoUpdateProfile;
+- (BOOL)shouldAutoUpdateProfile UNAVAILABLE_ATTRIBUTE;
+
+/*!
  * When initializing Facebook client, we define basic "Read" permissions.
  */
 - (instancetype)initWithPermissions:(NSArray *)permissions;

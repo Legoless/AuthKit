@@ -4,6 +4,7 @@
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKAccessToken.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 #import "AKFacebookClient.h"
 
@@ -34,6 +35,11 @@
     }
     
     return _loginManager;
+}
+
+- (void)setShouldAutoUpdateProfile:(BOOL)shouldAutoUpdateProfile
+{
+    [FBSDKProfile enableUpdatesOnAccessTokenChange:shouldAutoUpdateProfile];
 }
 
 - (AKSessionState)state

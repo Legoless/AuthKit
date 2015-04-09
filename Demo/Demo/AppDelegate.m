@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[AKClientManager sharedManager] setup];
+    [[AKClientManager sharedManager] setupWithLaunchOptions:launchOptions];
 
     return YES;
 }

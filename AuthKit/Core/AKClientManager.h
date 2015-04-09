@@ -37,7 +37,7 @@
 /*!
  * Initializes the manager and setups login sources, call after login sources are set
  */
-- (void)setup;
+- (void)setupWithLaunchOptions:(NSDictionary *)options;
 
 #pragma mark - UIApplicationDelegate methods
 

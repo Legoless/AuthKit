@@ -20,6 +20,8 @@
 
 @optional
 
+- (void)setupWithLaunchOptions:(NSDictionary *)options;
+
 - (void)handleDidBecomeActive;
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;

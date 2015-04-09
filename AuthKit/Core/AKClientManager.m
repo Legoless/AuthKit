@@ -77,7 +77,7 @@
     [self.sources addObject:source];
 }
 
-- (void)setup
+- (void)setupWithLaunchOptions:(NSDictionary *)options
 {
     //
     // Setup should not be called more than once
@@ -95,9 +95,9 @@
 
     for (id source in self.sources)
     {
-        if ([source respondsToSelector:@selector(setup)])
+        if ([source respondsToSelector:@selector(setupWithLaunchOptions:)])
         {
-            [source setup];
+            [source setupWithLaunchOptions:options];
         }
     }
 }

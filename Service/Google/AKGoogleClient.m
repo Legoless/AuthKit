@@ -142,11 +142,6 @@
     return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
-- (void)handleDidBecomeActive
-{
-    // Google Plus SDK actually does not require this call
-}
-
 #pragma mark - GPPSignInDelegate
 
 - (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error

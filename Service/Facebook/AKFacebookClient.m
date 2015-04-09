@@ -72,6 +72,16 @@
 
 #pragma mark - AKOAuthSource
 
+- (void)setupWithLaunchOptions:(NSDictionary *)options
+{
+    [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:options];
+}
+
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
 - (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
     [self loginWithDetails:nil success:success failure:failure];

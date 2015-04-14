@@ -30,7 +30,6 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 - Full Keychain support using SSKeychain
 - Add more social services
   - Pinterest
-  - Facebook
   - Twitter
   - App.net
   - LinkedIn

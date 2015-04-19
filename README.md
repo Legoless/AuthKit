@@ -29,8 +29,8 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 - Storing login data as Key-Value
 - Full Keychain support using SSKeychain
 - Add more social services
-  - Pinterest
   - Twitter
+  - Pinterest
   - App.net
   - LinkedIn
   - Steam

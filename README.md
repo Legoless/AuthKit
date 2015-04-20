@@ -35,13 +35,29 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 - Storing login data as Key-Value
 - Full Keychain support using SSKeychain
 - Add more social services
-  - Twitter
-  - Pinterest
+  - Amazon
   - App.net
+  - Blogger
+  - Disqus
+  - Foursquare
+  - Instagram
   - LinkedIn
-  - Steam
-  - Evernote
+  - LiveJournal
+  - Mail.ru
+  - Odnoklassniki
+  - OpenID
   - Origin
+  - PayPal
+  - Reddit
+  - Skyrock.com
+  - StackExchange
+  - Steam
+  - Twitch.tv
+  - Vimeo
+  - VKontakte
+  - Windows Live
+  - WordPress.com
+  - Yahoo
   - ...
 - ReactiveCocoa support
 - Keychain integration

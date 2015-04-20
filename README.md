@@ -1,6 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
 AuthKit
 =======
+
+[![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
 
 AuthKit is to authentication services as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the API directly.
 

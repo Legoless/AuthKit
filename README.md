@@ -1,7 +1,13 @@
 AuthKit
 =======
 
-AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the API directly.
+[![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
+[![Build Status](http://img.shields.io/travis/legoless/AuthKit/master.svg?style=flat)](https://travis-ci.org/legoless/AuthKit)
+[![Pod Version](http://img.shields.io/cocoapods/v/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
+[![Pod License](http://img.shields.io/cocoapods/l/AuthKit.svg?style=flat)](http://opensource.org/licenses/MIT)
+
+AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers. AuthKit allows logging in into multiple online services and provides configured AFNetworking clients which you can use to access the corresponding REST API directly.
 
 Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a Cocoa Pod, due to dependency conflicts. AuthKit fills this gap of providing `AFHTTPNetworkOperationManager` and `AFHTTPSessionManager`  classes configured to be used with any API, including **GitHub**, **Crashlytics** and more.
 
@@ -29,15 +35,29 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 - Storing login data as Key-Value
 - Full Keychain support using SSKeychain
 - Add more social services
-  - Pinterest
-  - Facebook
-  - Twitter
+  - Amazon
   - App.net
-  - Google+ (Gmail)
+  - Blogger
+  - Disqus
+  - Foursquare
+  - Instagram
   - LinkedIn
-  - Steam
-  - Evernote
+  - LiveJournal
+  - Mail.ru
+  - Odnoklassniki
+  - OpenID
   - Origin
+  - PayPal
+  - Reddit
+  - Skyrock.com
+  - StackExchange
+  - Steam
+  - Twitch.tv
+  - Vimeo
+  - VKontakte
+  - Windows Live
+  - WordPress.com
+  - Yahoo
   - ...
 - ReactiveCocoa support
 - Keychain integration
@@ -54,4 +74,4 @@ Dal Rupnik
 License
 ======
 
-AuthKit is available under the MIT license. See [LICENSE](https://github.com/Legoless/AuthKit/blob/master/LICENSE) file for more information.
+**AuthKit** is available under the MIT license. See [LICENSE](https://github.com/Legoless/AuthKit/blob/master/LICENSE) file for more information.

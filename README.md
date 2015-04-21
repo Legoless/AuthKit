@@ -31,36 +31,24 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 
 # TODO
 
-- Generic `UIViewController` supporting logging in
-- Storing login data as Key-Value
-- Full Keychain support using SSKeychain
+- Storing login data as Key-Value with Full Keychain support using SSKeychain
 - Add more social services
   - Amazon
-  - App.net
   - Blogger
   - Disqus
-  - Foursquare
   - Instagram
-  - LinkedIn
   - LiveJournal
   - Mail.ru
   - Odnoklassniki
   - OpenID
   - Origin
-  - PayPal
-  - Reddit
   - Skyrock.com
-  - StackExchange
-  - Steam
   - Twitch.tv
   - Vimeo
   - VKontakte
-  - Windows Live
   - WordPress.com
-  - Yahoo
   - ...
 - ReactiveCocoa support
-- Keychain integration
 
 Contact
 ======

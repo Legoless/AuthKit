@@ -119,6 +119,36 @@
 
         ]
       }
+    },
+    {
+      "name": "Twitter",
+      "source_files": "Service/Twitter/*.{h,m}",
+      "dependencies": {
+        "STTwitter": [
+
+        ],
+        "AuthKit/Core": [
+
+        ],
+        "AuthKit/OAuth": [
+
+        ]
+      }
+    },
+    {
+      "name": "LinkedIn",
+      "source_files": "Service/LinkedIn/*.{h,m}",
+      "dependencies": {
+        "IOSLinkedInAPI": [
+
+        ],
+        "AuthKit/Core": [
+
+        ],
+        "AuthKit/OAuth": [
+
+        ]
+      }
     }
   ]
 }

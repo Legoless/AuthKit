@@ -96,6 +96,12 @@
 #define COCOAPODS_VERSION_MINOR_AuthKit_Interface 7
 #define COCOAPODS_VERSION_PATCH_AuthKit_Interface 0
 
+// AuthKit/LinkedIn
+#define COCOAPODS_POD_AVAILABLE_AuthKit_LinkedIn
+#define COCOAPODS_VERSION_MAJOR_AuthKit_LinkedIn 0
+#define COCOAPODS_VERSION_MINOR_AuthKit_LinkedIn 7
+#define COCOAPODS_VERSION_PATCH_AuthKit_LinkedIn 0
+
 // AuthKit/OAuth
 #define COCOAPODS_POD_AVAILABLE_AuthKit_OAuth
 #define COCOAPODS_VERSION_MAJOR_AuthKit_OAuth 0
@@ -107,6 +113,12 @@
 #define COCOAPODS_VERSION_MAJOR_AuthKit_Persistence 0
 #define COCOAPODS_VERSION_MINOR_AuthKit_Persistence 7
 #define COCOAPODS_VERSION_PATCH_AuthKit_Persistence 0
+
+// AuthKit/Twitter
+#define COCOAPODS_POD_AVAILABLE_AuthKit_Twitter
+#define COCOAPODS_VERSION_MAJOR_AuthKit_Twitter 0
+#define COCOAPODS_VERSION_MINOR_AuthKit_Twitter 7
+#define COCOAPODS_VERSION_PATCH_AuthKit_Twitter 0
 
 // Bolts
 #define COCOAPODS_POD_AVAILABLE_Bolts
@@ -138,6 +150,12 @@
 #define COCOAPODS_VERSION_MINOR_Haystack 8
 #define COCOAPODS_VERSION_PATCH_Haystack 0
 
+// IOSLinkedInAPI
+#define COCOAPODS_POD_AVAILABLE_IOSLinkedInAPI
+#define COCOAPODS_VERSION_MAJOR_IOSLinkedInAPI 2
+#define COCOAPODS_VERSION_MINOR_IOSLinkedInAPI 0
+#define COCOAPODS_VERSION_PATCH_IOSLinkedInAPI 0
+
 // JSONModel
 #define COCOAPODS_POD_AVAILABLE_JSONModel
 #define COCOAPODS_VERSION_MAJOR_JSONModel 1
@@ -155,6 +173,12 @@
 #define COCOAPODS_VERSION_MAJOR_SSKeychain 1
 #define COCOAPODS_VERSION_MINOR_SSKeychain 2
 #define COCOAPODS_VERSION_PATCH_SSKeychain 3
+
+// STTwitter
+#define COCOAPODS_POD_AVAILABLE_STTwitter
+#define COCOAPODS_VERSION_MAJOR_STTwitter 0
+#define COCOAPODS_VERSION_MINOR_STTwitter 2
+#define COCOAPODS_VERSION_PATCH_STTwitter 0
 
 // googleplus-ios-sdk
 #define COCOAPODS_POD_AVAILABLE_googleplus_ios_sdk

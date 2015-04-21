@@ -51,8 +51,14 @@
      {
      NSLog(@"ERROR: %@", error);
      }];*/
-    
-    
+
+    AKTwitterClient *client = [[AKTwitterClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<TWITTER_CONSUMER_KEY>", AKServiceSecret : @"<TWITTER_CONSUMER_SECRET>" }];
+    [client loginWithSuccess:^(id user) {
+        NSLog(@"Twitter user: %@", user);
+    } failure:^(id responseObject, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
     self.authVC = [[AKAuthViewController alloc] initWithLoginSources:@[ self.gitHubClient, self.crashlyticsClient ]];
     self.authVC.delegate = self;
     self.authVC.headerImageView.image = [UIImage imageNamed:@"lock-icon"];

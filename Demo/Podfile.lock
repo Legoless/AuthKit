@@ -28,8 +28,10 @@ PODS:
     - AuthKit/GitHub (= 0.7.0)
     - AuthKit/Google (= 0.7.0)
     - AuthKit/Interface (= 0.7.0)
+    - AuthKit/LinkedIn (= 0.7.0)
     - AuthKit/OAuth (= 0.7.0)
     - AuthKit/Persistence (= 0.7.0)
+    - AuthKit/Twitter (= 0.7.0)
   - AuthKit/Core (0.7.0):
     - AFNetworking (~> 2.x)
     - JSONModel
@@ -50,12 +52,20 @@ PODS:
     - AuthKit/Core
     - Haystack
     - PureLayout
+  - AuthKit/LinkedIn (0.7.0):
+    - AuthKit/Core
+    - AuthKit/OAuth
+    - IOSLinkedInAPI
   - AuthKit/OAuth (0.7.0):
     - AuthKit/Core
   - AuthKit/Persistence (0.7.0):
     - AuthKit/Core
     - Haystack
     - SSKeychain
+  - AuthKit/Twitter (0.7.0):
+    - AuthKit/Core
+    - AuthKit/OAuth
+    - STTwitter
   - Bolts (1.1.4)
   - Facebook-iOS-SDK/CoreKit (4.0.1):
     - Bolts (~> 1.0)
@@ -67,9 +77,12 @@ PODS:
     - Facebook-iOS-SDK/CoreKit
   - googleplus-ios-sdk (1.7.1)
   - Haystack (0.8.0)
+  - IOSLinkedInAPI (2.0.0):
+    - AFNetworking (>= 2.0.0)
   - JSONModel (1.0.2)
   - PureLayout (2.0.5)
   - SSKeychain (1.2.3)
+  - STTwitter (0.2.0)
 
 DEPENDENCIES:
   - AuthKit (from `../AuthKit.podspec`)
@@ -81,13 +94,15 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   AKPickerView: 839064418c8774f17ed18e85418919708a266916
-  AuthKit: 2687ed3bf84d8be2beba2d7b3abf59cfa32f3bf5
+  AuthKit: eacc0f82eb157e9a7019b809f433dc0803d14667
   Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   Facebook-iOS-SDK: 6d05532c97e9c542f8d87f94b7f6ee217493d00b
   googleplus-ios-sdk: 065d9135061a5f84c07656a68ced48336408fe35
   Haystack: ce9a2b9f6be59c7a6eb9aba6a0b023b6d49a0eef
+  IOSLinkedInAPI: d0adc664472d471b0df9b2aad92a2d82de926c40
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
+  STTwitter: 4fda61d0a96c707f94df85677b1a4aedbcec6fcd
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.4

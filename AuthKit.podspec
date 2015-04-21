@@ -71,4 +71,20 @@ Pod::Spec.new do |s|
     ss.dependency 'AuthKit/Core'
     ss.dependency 'AuthKit/OAuth'
   end
+
+  s.subspec 'Twitter' do |ss|
+    ss.source_files = 'Service/Twitter/*.{h,m}'
+
+    ss.dependency 'STTwitter'
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
+  end
+
+  s.subspec 'LinkedIn' do |ss|
+    ss.source_files = 'Service/LinkedIn/*.{h,m}'
+
+    ss.dependency 'IOSLinkedInAPI'
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
+  end
 end

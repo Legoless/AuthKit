@@ -6,22 +6,6 @@
 #import "AKOAuthSource.h"
 #import "AKLoginSource.h"
 
-@interface AKFacebookClient : AKClient <AKLoginSource, AKOAuthSource>
-
-/*!
- *  Auto updates Facebook profile
- */
-@property (nonatomic, assign) BOOL shouldAutoUpdateProfile;
-- (BOOL)shouldAutoUpdateProfile UNAVAILABLE_ATTRIBUTE;
-
-/*!
- * When initializing Facebook client, we define basic "Read" permissions.
- */
-- (instancetype)initWithPermissions:(NSArray *)permissions;
-
-/*!
- * Re-logins with additional permissions if required (write permissions)
- */
-- (void)loginWithWritePermissions:(NSArray *)permissions success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
+@interface AKLinkedInClient : AKClient <AKLoginSource, AKOAuthSource>
 
 @end

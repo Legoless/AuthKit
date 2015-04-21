@@ -23,6 +23,8 @@
 
 @implementation AKGitHubClient
 
+@synthesize accessToken = _accessToken;
+
 - (NSString *)sourceName
 {
     return @"GitHub";
@@ -33,7 +35,7 @@
     return ([self.accessToken length] > 0);
 }
 
-- (id)initWithAccessParameters:(NSDictionary *)parameters
+- (instancetype)initWithAccessParameters:(NSDictionary *)parameters
 {
     //
     // Set default server URL as parameter

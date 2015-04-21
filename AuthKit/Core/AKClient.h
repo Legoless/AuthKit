@@ -13,7 +13,9 @@
 @class AKUser;
 @class AFHTTPRequestOperationManager;
 
-
+/*!
+ * Main AuthKit class to connect to API
+ */
 @interface AKClient : NSObject
 
 /*!
@@ -45,6 +47,11 @@
  * Returns YES, when AKClient is allowed to make authorized requests
  */
 @property (nonatomic, readonly) AKSessionState state;
+
+/*!
+ *  Access Token after successful login, each subclass must handle this separately
+ */
+@property (nonatomic, readonly) NSString* accessToken;
 
 /*!
  * Designated initializer for any AuthKit client. Each API requires

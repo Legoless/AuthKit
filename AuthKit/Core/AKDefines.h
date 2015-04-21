@@ -11,8 +11,8 @@
  */
 extern NSString *const AKUsername;
 extern NSString *const AKPassword;
-extern NSString *const AKAccessToken;
-extern NSString *const AKServerURL;
+extern NSString *const AKAccessToken;   // Access token used to access the API
+extern NSString *const AKServerURL;     // Server URL, some services have multiple server URL's
 extern NSString *const AKScopes;        // Authentication scopes, such as permissions with Facebook
 extern NSString *const AKServiceKey;    // Service Key string
 extern NSString *const AKServiceSecret; // Service Secret string

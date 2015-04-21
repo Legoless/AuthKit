@@ -12,3 +12,4 @@
 #import "AKFacebook.h"
 #import "AKGoogle.h"
 #import "AKTwitter.h"
+#import "AKLinkedIn.h"

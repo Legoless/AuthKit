@@ -11,11 +11,6 @@
 @interface AKGitHubClient : AKClient <AKLoginSource>
 
 /*!
- * GitHub Access Token after successful login
- */
-@property (nonatomic, readonly) NSString* accessToken;
-
-/*!
  * Initializes GitHub Auth Client with ClientID and ClientSecret with scopes
  */
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note;

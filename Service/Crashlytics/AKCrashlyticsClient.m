@@ -15,10 +15,13 @@
 @interface AKCrashlyticsClient ()
 
 @property (nonatomic, strong, readwrite) NSString* developerToken;
+@property (nonatomic, strong, readwrite) NSString* accessToken;
 
 @end
 
 @implementation AKCrashlyticsClient
+
+@synthesize accessToken = _accessToken;
 
 #pragma mark - AKLoginSource
 

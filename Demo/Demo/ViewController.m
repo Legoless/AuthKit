@@ -52,13 +52,6 @@
      NSLog(@"ERROR: %@", error);
      }];*/
 
-    AKTwitterClient *client = [[AKTwitterClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<TWITTER_CONSUMER_KEY>", AKServiceSecret : @"<TWITTER_CONSUMER_SECRET>" }];
-    [client loginWithSuccess:^(id user) {
-        NSLog(@"Twitter user: %@", user);
-    } failure:^(id responseObject, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-
     self.authVC = [[AKAuthViewController alloc] initWithLoginSources:@[ self.gitHubClient, self.crashlyticsClient ]];
     self.authVC.delegate = self;
     self.authVC.headerImageView.image = [UIImage imageNamed:@"lock-icon"];
@@ -76,6 +69,16 @@
 
 - (IBAction)loginAuthKitButtonTap:(UIButton *)sender
 {
+    //AKTwitterClient *client = [[AKTwitterClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<TWITTER_CONSUMER_KEY>", AKServiceSecret : @"<TWITTER_CONSUMER_SECRET>" }];
+
+    AKLinkedInClient *client = [[AKLinkedInClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<LINKEDIN_API_KEY", AKServiceSecret : @"<LINKEDIN_CONSUMER_SECRET>", AKScopes : @[ @"r_contactinfo", @"r_fullprofile" ] }];
+    [client loginWithSuccess:^(id user) {
+        NSLog(@"LinkedIn user: %@", user);
+    } failure:^(id responseObject, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+    return;
     [self presentViewController:self.authVC animated:YES completion:nil];
 }
 

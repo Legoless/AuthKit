@@ -16,6 +16,8 @@
 {
     [[AKClientManager sharedManager] setupWithLaunchOptions:launchOptions];
 
+    NSURL* URL = [NSURL URLWithString:@"/people/~" relativeToURL:[NSURL URLWithString:@"https://api.linkedin.com/v1/"]];
+
     return YES;
 }
 

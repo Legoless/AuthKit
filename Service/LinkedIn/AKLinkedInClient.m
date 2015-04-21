@@ -2,85 +2,79 @@
 // Created by Dal Rupnik on 23/03/15.
 //
 
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <IOSLinkedInAPI/LIALinkedInApplication.h>
+#import <Haystack/NSString+Random.h>
 
-#import "AKFacebookClient.h"
+#import "AKLinkedInClient.h"
+#import "AKLinkedInConstants.h"
+#import "LIALinkedInApplication.h"
+#import "LIALinkedInHttpClient.h"
+#import "AKLinkedInRequestSerializer.h"
 
-@interface AKFacebookClient ()
+@interface AKLinkedInClient ()
 
-/*!
- *  Stores FBSDKLoginMechanic
- */
-@property (nonatomic, strong) FBSDKLoginManager* loginManager;
+@property (nonatomic, strong) LIALinkedInApplication* linkedIn;
+@property (nonatomic, strong) LIALinkedInHttpClient *linkedInClient;
 
-//
-// Used to store pointers to blocks
-//
-@property (nonatomic, copy) AKSuccessBlock successBlock;
-@property (nonatomic, copy) AKFailureBlock failureBlock;
+@property (nonatomic, strong, readwrite) NSString* accessToken;
 
 @end
 
-@implementation AKFacebookClient
+@implementation AKLinkedInClient
+
+@synthesize accessToken = _accessToken;
 
 #pragma mark - Getters and Setters
 
-- (FBSDKLoginManager *)loginManager
+- (LIALinkedInApplication *)linkedIn
 {
-    if (!_loginManager)
+    if (!_linkedIn)
     {
-        _loginManager = [[FBSDKLoginManager alloc] init];
+        _linkedIn = [LIALinkedInApplication applicationWithRedirectURL:@"http://www.arvystate.net" clientId:self.accessParameters[AKServiceKey] clientSecret:self.accessParameters[AKServiceSecret] state:[NSString hs_randomAlphaNumericStringOfLength:10] grantedAccess:self.accessParameters[AKScopes]];
     }
-    
-    return _loginManager;
+
+    return _linkedIn;
 }
 
-- (void)setShouldAutoUpdateProfile:(BOOL)shouldAutoUpdateProfile
+- (LIALinkedInHttpClient *)linkedInClient
 {
-    [FBSDKProfile enableUpdatesOnAccessTokenChange:shouldAutoUpdateProfile];
-}
+    if (!_linkedInClient)
+    {
+        _linkedInClient = [LIALinkedInHttpClient clientForApplication:self.linkedIn];
+    }
 
-- (AKSessionState)state
-{
-    FBSDKAccessToken* accessToken = [FBSDKAccessToken currentAccessToken];
-    
-    if (!accessToken)
-    {
-        return AKSessionStateClosed;
-    }
-    else
-    {
-        return AKSessionStateOpen;
-    }
+    return _linkedInClient;
 }
 
 #pragma mark - Initializers
 
-- (instancetype)initWithPermissions:(NSArray *)permissions
+- (instancetype)initWithAccessParameters:(NSDictionary *)parameters
 {
-    return [self initWithAccessParameters:@{ AKScopes : permissions }];
+    //
+    // Set default server URL as parameter
+    //
+    if (!parameters[AKServerURL])
+    {
+        NSMutableDictionary *params = [parameters mutableCopy];
+
+        params[AKServerURL] = AKLinkedInServerDefaultURL;
+
+        parameters = [params copy];
+    }
+
+    self = [super initWithAccessParameters:parameters];
+
+    return self;
 }
 
 #pragma mark - AKLoginSource
 
 - (NSString *)sourceName
 {
-    return @"Facebook";
+    return @"LinkedIn";
 }
 
 #pragma mark - AKOAuthSource
-
-- (void)setupWithLaunchOptions:(NSDictionary *)options
-{
-    [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:options];
-}
-
-- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] openURL:url sourceApplication:sourceApplication annotation:annotation];
-}
 
 - (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
@@ -89,73 +83,59 @@
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    self.successBlock = success;
-    self.failureBlock = failure;
-    
-    [self.loginManager logInWithReadPermissions:self.accessParameters[AKScopes] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
-    {
-        [self sessionStateChanged:result error:error];
-    }];
-}
-
-- (void)loginWithWritePermissions:(NSArray *)permissions success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
-{
-    self.successBlock = success;
-    self.failureBlock = failure;
-    
-    [self.loginManager logInWithPublishPermissions:permissions handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
-    {
-        [self sessionStateChanged:result error:error];
-    }];
-}
-
-- (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
-{
-    [self.loginManager logOut];
-    
-    if (success)
-    {
-        success (nil);
-    }
-}
-
-- (void)sessionStateChanged:(FBSDKLoginManagerLoginResult *)loginResult error:(NSError *)error
-{
-    //
-    // Get session state
-    //
-
-    AKSessionState sessionState = self.state;
-    
-    if (error)
-    {
-        sessionState = AKSessionStateClosedLoginFailed;
-    }
-    
-    if (self.sessionChangedHandler)
-    {
-        self.sessionChangedHandler(sessionState, error);
-    }
-
-    // If the session was opened successfully
-    if (error)
-    {
-        if (self.failureBlock)
+    [self.linkedInClient getAuthorizationCode:^(NSString *code) {
+        [self.linkedInClient getAccessToken:code success:^(NSDictionary *dictionary)
         {
-            self.failureBlock (nil, error);
-            
-            self.successBlock = nil;
-            self.failureBlock = nil;
+            self.accessToken = dictionary[@"access_token"];
+
+            [self.manager GET:@"/v1/people/~" parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result) {
+                if (success)
+                {
+                    success (result);
+                }
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                if (failure)
+                {
+                    failure (operation.responseObject, error);
+                }
+            }];
+        } failure:^(NSError *error) {
+            if (failure)
+            {
+                failure (nil, error);
+            }
+        }];
+    }
+    cancel:^
+    {
+        if (failure)
+        {
+            failure (nil, nil);
         }
     }
-    else if (self.successBlock)
+    failure:^(NSError *error)
     {
-        self.successBlock(loginResult);
-        
-        self.successBlock = nil;
-        
-        self.failureBlock = nil;
-    }
+        if (failure)
+        {
+            failure (nil, nil);
+        }
+    }];
+}
+
+- (AFHTTPRequestOperationManager *)manager
+{
+    NSURL* serverURL = [NSURL URLWithString:self.accessParameters[AKServerURL]];
+
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:serverURL];
+
+    AKLinkedInRequestSerializer *serializer = [AKLinkedInRequestSerializer serializer];
+
+    serializer.accessToken = self.accessToken;
+
+    manager.requestSerializer = serializer;
+
+    return manager;
 }
 
 @end

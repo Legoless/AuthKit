@@ -25,6 +25,36 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
 - Completely extensible clients and UI customizations.
 - **A single, simple API to work with every service.**
 
+# Install
+
+The easiest way to install **AuthKit** is with **CocoaPods**.
+
+```ruby
+pod 'AuthKit'
+```
+
+As alternative install method, you can manually drag & drop files from the repository into your Xcode project.
+
+If you wish to install only selected parts of AuthKit (*for example, only install Facebook and Twitter login clients*), use separate subspecs.
+
+```
+pod 'AuthKit/Facebook'
+pod 'AuthKit/Twitter'
+```
+
+The example above will only install `AKClient` implementations of **Facebook** and **Twitter**.
+
+# Usage
+
+AuthKit is very easy to use, start by importing client implementations:
+
+```
+#import <AuthKit/AKFacebook.h>
+#import <AuthKit/AKTwitter.h>
+```
+
+This will import entire AuthKit framework, including all 
+
 # Contributing
 
 Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.

@@ -55,7 +55,7 @@ AuthKit is very easy to use, start by importing client implementations:
 #import <AuthKit/AKTwitter.h>
 ```
 
-This will import entire AuthKit framework, including all 
+All AuthKit clients derive from `AKClient` class, which wraps login implementation to a couple of methods. For a full implementation, `AKLoginManager` class needs to be connected to your app delegate.
 
 # Contributing
 

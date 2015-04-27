@@ -19,6 +19,8 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
   - [GitHub](https://github.com)
   - [Google+](https://plus.google.com)
   - [LinkedIn](https://linkedin.com)
+  - [Twitter](https://twitter.com)
+  - [Windows Live](https://www.live.com)
   - ...
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service.

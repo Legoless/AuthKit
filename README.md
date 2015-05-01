@@ -63,7 +63,7 @@ Another service can easily be added by creating `AKClient` subclass and implemen
 
 # TODO
 
-- Storing login data as Key-Value with Full Keychain support using SSKeychain
+- Storing login data as Key-Value with Full Keychain support using **SSKeychain**
 - Add more social services
   - Amazon
   - Blogger

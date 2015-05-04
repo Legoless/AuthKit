@@ -1,5 +1,4 @@
-AuthKit
-=======
+![AuthKit](https://raw.githubusercontent.com/Legoless/AuthKit/master/Resource/logo.png)
 
 [![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
 [![Build Status](https://travis-ci.org/Legoless/AuthKit.svg)](https://travis-ci.org/legoless/AuthKit)

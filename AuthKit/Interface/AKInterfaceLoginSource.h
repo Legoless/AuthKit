@@ -1,17 +1,15 @@
 //
-//  Header.h
+//  AKInterfaceLoginSource.h
 //  Pods
 //
-//  Created by Dal Rupnik on 24/07/14.
+//  Created by Dal Rupnik on 04/05/15.
 //
 //
-
-@protocol AKLoginSource <NSObject>
 
 /*!
- * Returns source name
+ * Interface login source can be used by AKAuthViewController instances to display UI
  */
-- (NSString *)sourceName;
+@protocol AKInterfaceLoginSource <NSObject>
 
 @optional
 

@@ -43,7 +43,7 @@
 /*!
  * Returns registered login source by name
  */
-- (AKClient<AKLoginSource> *)loginSourceWithName:(NSString *)name
+- (AKClient *)loginSourceWithName:(NSString *)name
 {
     for (id object in self.sources)
     {

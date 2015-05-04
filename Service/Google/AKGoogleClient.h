@@ -2,11 +2,9 @@
 // Created by Dal Rupnik on 23/03/15.
 //
 
-#import "AKClient.h"
-#import "AKLoginSource.h"
-#import "AKOAuthSource.h"
+#import "AKOAuth.h"
 
-@interface AKGoogleClient : AKClient <AKOAuthSource, AKLoginSource>
+@interface AKGoogleClient : AKOAuthClient
 
 //
 // Wrapper properties for Google Plus

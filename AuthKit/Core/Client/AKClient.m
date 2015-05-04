@@ -21,6 +21,11 @@
 
 #pragma mark - Getters and Setters
 
+- (NSString *)sourceName
+{
+    return @"AuthKitGeneric";
+}
+
 - (AKSessionState)state
 {
     return AKSessionStateClosed;
@@ -69,24 +74,11 @@
     return [self.sessionManager copy];
 }
 
-#pragma mark - Convenience methods
-
-
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
-{
-    [self loginWithDetails:@{ AKUsername : username, AKPassword : password } success:success failure:failure];
-}
-
 #pragma mark - Abstract methods
 
 //
 // Methods below should be implemented in subclasses
 //
-
-- (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
-{
-    [self loginWithDetails:nil success:success failure:failure];
-}
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {

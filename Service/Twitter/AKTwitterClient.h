@@ -2,10 +2,8 @@
 // Created by Dal Rupnik on 20/04/15.
 //
 
-#import "AKClient.h"
-#import "AKOAuthSource.h"
-#import "AKLoginSource.h"
+#import "AKOAuth.h"
 
-@interface AKTwitterClient : AKClient <AKLoginSource, AKOAuthSource>
+@interface AKTwitterClient : AKOAuthClient
 
 @end

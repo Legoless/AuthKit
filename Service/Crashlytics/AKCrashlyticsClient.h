@@ -1,6 +1,6 @@
 #import "AKCore.h"
 
-@interface AKCrashlyticsClient : AKClient <AKLoginSource>
+@interface AKCrashlyticsClient : AKPasswordClient
 
 @property (nonatomic, readonly) NSString* developerToken;
 

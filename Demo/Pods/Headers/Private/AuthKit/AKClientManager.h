@@ -1,1 +1,1 @@
-../../../../../AuthKit/Core/AKClientManager.h
+../../../../../AuthKit/Core/Client/AKClientManager.h

@@ -8,7 +8,7 @@
 
 #import "AKCore.h"
 
-@interface AKGitHubClient : AKClient <AKLoginSource>
+@interface AKGitHubClient : AKPasswordClient <AKTwoFactorLoginSource>
 
 /*!
  * Initializes GitHub Auth Client with ClientID and ClientSecret with scopes
@@ -16,7 +16,5 @@
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note;
 
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret scopes:(NSArray *)scopes note:(NSString *)note noteURL:(NSString *)noteURL serverURL:(NSString *)serverURL;
-
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password secondPassword:(NSString *)secondPassword success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 @end

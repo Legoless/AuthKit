@@ -3,11 +3,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AKClient.h"
+#import "AKLoginSource.h"
 
-@protocol AKOAuthSource <NSObject>
+@protocol AKOAuthLoginSource <AKLoginSource>
 
-@required
+@optional
 
 /*!
  * Starts OAuth login process with a block based API
@@ -15,11 +15,8 @@
 - (void)loginWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 /*!
- * Should usually be run in app delegate
+ * Methods below should be run when app delegate receives the messages
  */
-
-@optional
-
 - (void)setupWithLaunchOptions:(NSDictionary *)options;
 
 - (void)handleDidBecomeActive;

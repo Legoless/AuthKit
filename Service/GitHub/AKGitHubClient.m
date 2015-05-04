@@ -95,6 +95,9 @@
     return [self initWithAccessParameters:[parameters copy]];
 }
 
+#pragma mark - AKTwoFactorLoginSource
+
+
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password secondPassword:(NSString *)secondPassword success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
     NSDictionary* parameters = @{ AKUsername : username, AKPassword : password, AKGitHubSecondPassword : secondPassword };

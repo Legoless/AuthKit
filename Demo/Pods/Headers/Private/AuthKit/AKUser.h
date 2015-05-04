@@ -1,1 +1,1 @@
-../../../../../AuthKit/Core/AKUser.h
+../../../../../AuthKit/Core/User/AKUser.h

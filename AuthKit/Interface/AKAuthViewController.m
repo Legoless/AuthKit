@@ -266,7 +266,7 @@
 
 - (void)loginButtonTap:(UIButton *)sender
 {
-    AKClient<AKLoginSource> *client = self.selectedLoginSource;
+    AKClient<AKPasswordLoginSource> *client = self.selectedLoginSource;
     
     [client loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text success:^(id details)
     {

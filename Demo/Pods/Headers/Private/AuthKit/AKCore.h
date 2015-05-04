@@ -1,1 +1,1 @@
-../../../../../AuthKit/Core/AKCore.h
+../../../../../AuthKit/Core/Base/AKCore.h

@@ -8,6 +8,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 
+#import "AKLoginSource.h"
 #import "AKDefines.h"
 
 @class AKUser;
@@ -16,7 +17,7 @@
 /*!
  * Main AuthKit class to connect to API
  */
-@interface AKClient : NSObject
+@interface AKClient : NSObject <AKLoginSource>
 
 /*!
  * Will be called each time session state has changed
@@ -60,27 +61,6 @@
  * @param NSDictionary API parameters
  */
 - (instancetype)initWithAccessParameters:(NSDictionary *)parameters;
-
-/*!
- * Abstract login details, any number of parameters could be provided here.
- */
-- (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
-
-/*!
- * In most cases, this API is used to login. But certain API's also require a second password
- * or additional generated token.
- */
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
-
-/*!
- * Logs user out of the service (if logined)
- */
-- (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
-
-/*!
- * Once logged in, this method returns default user details for currently logged in user.
- */
-- (void)userWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure;
 
 /*!
  * Returns new instance of connection manager configured to work with the API, usually AFNetworking

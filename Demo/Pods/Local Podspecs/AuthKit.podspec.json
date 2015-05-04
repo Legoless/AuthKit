@@ -20,7 +20,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "AuthKit/Core/*.{h,m}",
+      "source_files": "AuthKit/Core/**/*.{h,m}",
       "dependencies": {
         "AFNetworking": [
           "~> 2.x"

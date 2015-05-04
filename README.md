@@ -2,7 +2,7 @@ AuthKit
 =======
 
 [![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
-[![Build Status](http://img.shields.io/travis/legoless/AuthKit/master.svg?style=flat)](https://travis-ci.org/legoless/AuthKit)
+[![Build Status](http://img.shields.io/travis/legoless/AuthKit.svg?style=flat)](https://travis-ci.org/legoless/AuthKit)
 [![Pod Version](http://img.shields.io/cocoapods/v/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
 [![Pod Platform](http://img.shields.io/cocoapods/p/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
 [![Pod License](http://img.shields.io/cocoapods/l/AuthKit.svg?style=flat)](http://opensource.org/licenses/MIT)

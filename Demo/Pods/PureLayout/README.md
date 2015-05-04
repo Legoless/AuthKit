@@ -1,5 +1,5 @@
 # [![PureLayout](https://github.com/smileyborg/PureLayout/blob/master/Images/PureLayout.png?raw=true)](#)
-[![Build Status](http://img.shields.io/travis/smileyborg/PureLayout.svg?style=flat)](https://travis-ci.org/smileyborg/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
+[![Build Status](http://img.shields.io/travis/smileyborg/PureLayout.svg?style=flat)](https://travis-ci.org/smileyborg/PureLayout) [![Test Coverage](http://img.shields.io/coveralls/smileyborg/PureLayout.svg?style=flat)](https://coveralls.io/r/smileyborg/PureLayout) [![Version](http://img.shields.io/cocoapods/v/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![Platform](http://img.shields.io/cocoapods/p/PureLayout.svg?style=flat)](http://cocoapods.org/?q=PureLayout) [![License](http://img.shields.io/cocoapods/l/PureLayout.svg?style=flat)](LICENSE)
 
 The ultimate API for iOS & OS X Auto Layout — impressively simple, immensely powerful. PureLayout extends `UIView`/`NSView`, `NSArray`, and `NSLayoutConstraint` with a comprehensive Auto Layout API that is modeled after Apple's own frameworks. PureLayout is an Objective-C library that also works (and looks!) great with Swift using a bridging header.
 
@@ -78,7 +78,7 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     	pod 'PureLayout'
 
 2.	Run `pod install` from Terminal, then open your app's `.xcworkspace` file to launch Xcode.
-3.	Import the `PureLayout.h` header.
+3.	Import the `PureLayout.h` header. Typically, this should be written as `#import <PureLayout/PureLayout.h>`
 
 That's it - now go write some beautiful Auto Layout code!
 
@@ -88,7 +88,9 @@ That's it - now go write some beautiful Auto Layout code!
         github "smileyborg/PureLayout"
 
 2.  Run `carthage update`, then follow the [additional steps required](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the iOS and/or Mac frameworks into your project.
-3.  Import the framework's umbrella header (iOS: `#import <PureLayout_iOS/PureLayout_iOS.h>`, OS X: `#import <PureLayout_Mac/PureLayout_Mac.h>`) or simply `@import` the framework name if using Modules.
+3.  Import the PureLayout framework/module (with the appropriate name for the platform you're using it on).
+    *  Using Modules: `@import PureLayout_iOS` or `@import PureLayout_Mac`
+    *  Without Modules: `#import <PureLayout_iOS/PureLayout_iOS.h>` or `#import <PureLayout_Mac/PureLayout_Mac.h>`
 
 That's it - now go write some beautiful Auto Layout code!
 
@@ -100,7 +102,7 @@ That's it - now go write some beautiful Auto Layout code!
 That's it - now go write some beautiful Auto Layout code!
 
 ### App Extensions
-When using PureLayout in an App Extension, define the preprocessor macro `PURELAYOUT_APP_EXTENSIONS` in the Build Settings of your App Extension's target to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
+To use PureLayout in an App Extension, you need to do a bit of extra configuration to prevent usage of unavailable APIs. [Click here](https://github.com/smileyborg/PureLayout/wiki/App-Extensions) for more info.
 
 ### Releases
 Releases are tagged in the git commit history using [semantic versioning](http://semver.org). Check out the [releases and release notes](https://github.com/smileyborg/PureLayout/releases) for each version.
@@ -131,7 +133,7 @@ An overview of the Auto Layout options available, ordered from the lowest- to hi
 *	**PureLayout**
 	*	Pros: Simple, efficient, minimal third party code, consistent with Cocoa API style, compatible with Objective-C and Swift codebases
 	*	Cons: Not the most concise expression of layout code
-*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [Masonry](https://github.com/Masonry/Masonry), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
+*	High-level Auto Layout Libraries/DSLs ([Cartography](https://github.com/robb/Cartography), [SnapKit](https://github.com/SnapKit/SnapKit), [KeepLayout](https://github.com/iMartinKiss/KeepLayout))
 	*	Pros: Very clean, concise, and convenient 
 	*	Cons: Unique API style is foreign to Cocoa APIs, mixed compatibility with Objective-C & Swift, greater dependency on third party code
 	

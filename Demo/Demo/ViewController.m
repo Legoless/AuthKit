@@ -69,8 +69,20 @@
 
 - (IBAction)loginAuthKitButtonTap:(UIButton *)sender
 {
+    AKLiveClient* client = [[AKLiveClient alloc] initWithClientId:@"<CLIENT_ID>"];
+    
+    [client loginWithSuccess:^(id user)
+    {
+        
+    }
+    failure:^(id responseObject, NSError *error)
+    {
+        
+    }];
+    
     //AKTwitterClient *client = [[AKTwitterClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<TWITTER_CONSUMER_KEY>", AKServiceSecret : @"<TWITTER_CONSUMER_SECRET>" }];
 
+    /*
     AKLinkedInClient *client = [[AKLinkedInClient alloc] initWithAccessParameters:@{ AKServiceKey : @"<LINKEDIN_API_KEY", AKServiceSecret : @"<LINKEDIN_CONSUMER_SECRET>", AKScopes : @[ @"r_contactinfo", @"r_fullprofile" ] }];
     [client loginWithSuccess:^(id user) {
         NSLog(@"LinkedIn user: %@", user);
@@ -79,7 +91,7 @@
     }];
 
     return;
-    [self presentViewController:self.authVC animated:YES completion:nil];
+    [self presentViewController:self.authVC animated:YES completion:nil];*/
 }
 
 #pragma mark - AKAuthViewControllerDelegate

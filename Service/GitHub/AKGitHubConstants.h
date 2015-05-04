@@ -29,4 +29,3 @@ extern NSString *const AKGitHubScopeOrganisationAdmin;
 extern NSString *const AKGitHubScopePublicKeyRead;
 extern NSString *const AKGitHubScopePublicKeyWrite;
 extern NSString *const AKGitHubScopePublicKeyAdmin;
-

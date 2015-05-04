@@ -58,9 +58,15 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/Resources/backArrow_black.png"
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/LiveAuthDialog_iPad.xib"
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/LiveAuthDialog_iPhone.xib"
   install_resource "googleplus-ios-sdk/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/Resources/backArrow_black.png"
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/LiveAuthDialog_iPad.xib"
+  install_resource "LiveSDK/src/LiveSDK/Library/Internal/LiveAuthDialog_iPhone.xib"
   install_resource "googleplus-ios-sdk/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"
 fi
 

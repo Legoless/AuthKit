@@ -92,6 +92,9 @@
     self.successBlock = success;
     self.failureBlock = failure;
     
+    // Fixes 304 error, before logging in
+    [self.loginManager logOut];
+    
     [self.loginManager logInWithReadPermissions:self.accessParameters[AKScopes] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error)
     {
         [self sessionStateChanged:result error:error];

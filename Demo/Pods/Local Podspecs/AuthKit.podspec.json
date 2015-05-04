@@ -94,7 +94,7 @@
       "name": "Facebook",
       "source_files": "Service/Facebook/*.{h,m}",
       "dependencies": {
-        "Facebook-iOS-SDK/LoginKit": [
+        "FBSDKLoginKit": [
 
         ],
         "AuthKit/Core": [
@@ -140,6 +140,21 @@
       "source_files": "Service/LinkedIn/*.{h,m}",
       "dependencies": {
         "IOSLinkedInAPI": [
+
+        ],
+        "AuthKit/Core": [
+
+        ],
+        "AuthKit/OAuth": [
+
+        ]
+      }
+    },
+    {
+      "name": "Live",
+      "source_files": "Service/Live/*.{h,m}",
+      "dependencies": {
+        "LiveSDK": [
 
         ],
         "AuthKit/Core": [

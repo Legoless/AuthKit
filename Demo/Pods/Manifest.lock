@@ -29,6 +29,7 @@ PODS:
     - AuthKit/Google (= 0.7.0)
     - AuthKit/Interface (= 0.7.0)
     - AuthKit/LinkedIn (= 0.7.0)
+    - AuthKit/Live (= 0.7.0)
     - AuthKit/OAuth (= 0.7.0)
     - AuthKit/Persistence (= 0.7.0)
     - AuthKit/Twitter (= 0.7.0)
@@ -40,7 +41,7 @@ PODS:
   - AuthKit/Facebook (0.7.0):
     - AuthKit/Core
     - AuthKit/OAuth
-    - Facebook-iOS-SDK/LoginKit
+    - FBSDKLoginKit
   - AuthKit/GitHub (0.7.0):
     - AuthKit/Core
   - AuthKit/Google (0.7.0):
@@ -56,6 +57,10 @@ PODS:
     - AuthKit/Core
     - AuthKit/OAuth
     - IOSLinkedInAPI
+  - AuthKit/Live (0.7.0):
+    - AuthKit/Core
+    - AuthKit/OAuth
+    - LiveSDK
   - AuthKit/OAuth (0.7.0):
     - AuthKit/Core
   - AuthKit/Persistence (0.7.0):
@@ -66,21 +71,30 @@ PODS:
     - AuthKit/Core
     - AuthKit/OAuth
     - STTwitter
-  - Bolts (1.1.4)
-  - Facebook-iOS-SDK/CoreKit (4.0.1):
-    - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit/no-arc (= 4.0.1)
-  - Facebook-iOS-SDK/CoreKit/no-arc (4.0.1):
-    - Bolts (~> 1.0)
-  - Facebook-iOS-SDK/LoginKit (4.0.1):
-    - Bolts (~> 1.0)
-    - Facebook-iOS-SDK/CoreKit
+  - Bolts (1.1.5):
+    - Bolts/AppLinks (= 1.1.5)
+    - Bolts/Tasks (= 1.1.5)
+  - Bolts/AppLinks (1.1.5):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.1.5)
+  - FBSDKCoreKit (4.1.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.1.0)
+    - FBSDKCoreKit/no-arc (= 4.1.0)
+  - FBSDKCoreKit/arc (4.1.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.1.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.1.0):
+    - FBSDKCoreKit
   - googleplus-ios-sdk (1.7.1)
   - Haystack (0.8.2)
   - IOSLinkedInAPI (2.0.0):
     - AFNetworking (>= 2.0.0)
   - JSONModel (1.0.2)
-  - PureLayout (2.0.5)
+  - LiveSDK (5.6.1)
+  - PureLayout (2.0.6)
   - SSKeychain (1.2.3)
   - STTwitter (0.2.0)
 
@@ -94,15 +108,17 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   AKPickerView: 839064418c8774f17ed18e85418919708a266916
-  AuthKit: eacc0f82eb157e9a7019b809f433dc0803d14667
-  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
-  Facebook-iOS-SDK: 6d05532c97e9c542f8d87f94b7f6ee217493d00b
+  AuthKit: 531280f0a6b4b95ff81c20efc70770084a1a10e6
+  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  FBSDKCoreKit: 469ed167195f860dbd2b4c4bbaa33d2e90598db9
+  FBSDKLoginKit: ff6224762732e3698f30942e4544321b8c7a23e6
   googleplus-ios-sdk: 065d9135061a5f84c07656a68ced48336408fe35
   Haystack: 4e55cd99706c04f0c92ef5c61a9bf7f55fa5b1a0
   IOSLinkedInAPI: d0adc664472d471b0df9b2aad92a2d82de926c40
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
-  PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
+  LiveSDK: 2627cf5872b33b3d960df27082a9a17afb74835d
+  PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   STTwitter: 4fda61d0a96c707f94df85677b1a4aedbcec6fcd
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.37.0

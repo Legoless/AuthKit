@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
   s.subspec 'Facebook' do |ss|
     ss.source_files = 'Service/Facebook/*.{h,m}'
 
-    ss.dependency 'Facebook-iOS-SDK/LoginKit'
+    ss.dependency 'FBSDKLoginKit'
     ss.dependency 'AuthKit/Core'
     ss.dependency 'AuthKit/OAuth'
   end
@@ -84,6 +84,14 @@ Pod::Spec.new do |s|
     ss.source_files = 'Service/LinkedIn/*.{h,m}'
 
     ss.dependency 'IOSLinkedInAPI'
+    ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
+  end
+
+  s.subspec 'Live' do |ss|
+    ss.source_files = 'Service/Live/*.{h,m}'
+
+    ss.dependency 'LiveSDK'
     ss.dependency 'AuthKit/Core'
     ss.dependency 'AuthKit/OAuth'
   end

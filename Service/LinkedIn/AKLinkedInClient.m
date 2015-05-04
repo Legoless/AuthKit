@@ -83,12 +83,14 @@
 
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
-    [self.linkedInClient getAuthorizationCode:^(NSString *code) {
+    [self.linkedInClient getAuthorizationCode:^(NSString *code)
+    {
         [self.linkedInClient getAccessToken:code success:^(NSDictionary *dictionary)
         {
             self.accessToken = dictionary[@"access_token"];
 
-            [self.manager GET:@"/v1/people/~" parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result) {
+            [self.manager GET:@"/v1/people/~" parameters:nil success:^(AFHTTPRequestOperation *operation, NSDictionary *result)
+            {
                 if (success)
                 {
                     success (result);

@@ -50,6 +50,13 @@
     return AKSessionStateClosed;
 }
 
+#pragma mark - Initializers
+
+- (instancetype)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret
+{
+    return [self initWithAccessParameters:@{ AKServiceKey : consumerKey, AKServiceSecret : consumerSecret }];
+}
+
 #pragma mark - AKLoginSource
 
 - (NSString *)sourceName

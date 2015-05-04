@@ -61,6 +61,9 @@
         "AuthKit/Core": [
 
         ],
+        "AuthKit/OAuth": [
+
+        ],
         "AKPickerView": [
 
         ],

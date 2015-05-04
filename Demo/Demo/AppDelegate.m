@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 arvystate.net. All rights reserved.
 //
 
-#import <AuthKit/AKClientManager.h>
+#import <AuthKit/AuthKit.h>
 
 #import "AppDelegate.h"
 
@@ -14,6 +14,29 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //
+    // Create login clients that we will use in the application
+    //
+
+    AKCrashlyticsClient *crashlytics = [[AKCrashlyticsClient alloc] initWithDeveloperToken:@"<DEVELOPER_TOKEN>"];
+    
+    AKFacebookClient *facebook = [[AKFacebookClient alloc] initWithPermissions:@[ AKFacebookPermissionPublicProfile, AKFacebookPermissionEmail ]];
+    
+    AKGitHubClient *github = [[AKGitHubClient alloc] initWithClientID:@"<CLIENT_ID>" clientSecret:@"<CLIENT_SECRET>" scopes:@[ AKGitHubScopeUser, AKGitHubScopeRepo ] note:@"Test"];
+    
+    AKGoogleClient *google = [[AKGoogleClient alloc] initWithClientId:@"<CLIENT_ID>" scopes:@[ AKGoogleScopeLogin, AKGoogleScopeProfile ]];
+    
+    AKLinkedInClient *linkedIn = [[AKLinkedInClient alloc] initWithClientId:@"<CLIENT_ID>" clientSecret:@"<CLIENT_SECRET>"];
+    
+    AKLiveClient *live = [[AKLiveClient alloc] initWithClientId:@"<CLIENT_ID>" scopes:@[ AKLiveScopeBasic, AKLiveScopeEmails ]];
+    
+    AKTwitterClient* twitter = [[AKTwitterClient alloc] initWithConsumerKey:@"<CONSUMER_KEY>" consumerSecret:@"<CONSUMER_SECRET>"];
+    
+    [[AKClientManager sharedManager] addLoginSources:@[ crashlytics, facebook, github, google, linkedIn, live, twitter ]];
+    
+    //
+    // This sends launch options to all registered login sources that need them
+    //
     [[AKClientManager sharedManager] setupWithLaunchOptions:launchOptions];
 
     return YES;

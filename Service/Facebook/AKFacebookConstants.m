@@ -3,3 +3,7 @@
 //
 
 #import "AKFacebookConstants.h"
+
+NSString *const AKFacebookPermissionPublicProfile = @"public_profile";
+NSString *const AKFacebookPermissionEmail         = @"email";
+NSString *const AKFacebookPermissionUserFriends   = @"user_friends";

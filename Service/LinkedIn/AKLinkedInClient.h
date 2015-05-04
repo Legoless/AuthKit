@@ -6,4 +6,6 @@
 
 @interface AKLinkedInClient : AKOAuthClient
 
+- (instancetype)initWithClientId:(NSString *)clientId clientSecret:(NSString *)clientSecret;
+
 @end

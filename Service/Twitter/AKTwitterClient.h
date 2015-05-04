@@ -6,4 +6,6 @@
 
 @interface AKTwitterClient : AKOAuthClient
 
+- (instancetype)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret;
+
 @end

@@ -11,6 +11,11 @@
 @protocol AKLoginSource <NSObject>
 
 /*!
+ * Returns YES, when AKClient is allowed to make authorized requests
+ */
+@property (nonatomic, readonly) AKSessionState state;
+
+/*!
  * This method is the main login method that takes any number of parameters
  */
 - (void)loginWithDetails:(NSDictionary *)details success:(AKSuccessBlock)success failure:(AKFailureBlock)failure;

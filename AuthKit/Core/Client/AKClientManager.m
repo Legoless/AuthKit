@@ -77,6 +77,11 @@
     [self.sources addObject:source];
 }
 
+- (void)addLoginSources:(NSArray *)loginSources
+{
+    [self.sources addObjectsFromArray:loginSources];
+}
+
 - (void)setupWithLaunchOptions:(NSDictionary *)options
 {
     //

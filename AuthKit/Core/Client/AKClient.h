@@ -11,9 +11,6 @@
 #import "AKLoginSource.h"
 #import "AKDefines.h"
 
-@class AKUser;
-@class AFHTTPRequestOperationManager;
-
 /*!
  * Main AuthKit class to connect to API
  */
@@ -43,11 +40,6 @@
  * Base URL of the API, usually corresponds to correct version
  */
 @property (nonatomic, readonly) NSURL* baseURL;
-
-/*!
- * Returns YES, when AKClient is allowed to make authorized requests
- */
-@property (nonatomic, readonly) AKSessionState state;
 
 /*!
  *  Access Token after successful login, each subclass must handle this separately

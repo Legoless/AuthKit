@@ -14,6 +14,8 @@
 
 @class AKAuthViewController;
 
+#pragma mark - Delegate
+
 @protocol AKAuthViewControllerDelegate <NSObject>
 
 @optional
@@ -25,7 +27,7 @@
  *  @param source             AKLoginSource that failed authentication
  *  @param error              NSError object
  */
-- (void)authViewController:(AKAuthViewController *)authViewController authenticationFailedForSource:(AKClient<AKLoginSource> *)client error:(NSError *)error; 
+- (void)authViewController:(AKAuthViewController *)authViewController authenticationFailedForSource:(id<AKLoginSource>)source error:(NSError *)error;
 
 /*!
  *  Called when user enters correct credentials to a login service
@@ -34,7 +36,7 @@
  *  @param source             AKLoginSource that authorized user
  *  @param userDetails        Serialized object of logged in user details
  */
-- (void)authViewController:(AKAuthViewController *)authViewController authenticationSuccessForSource:(AKClient<AKLoginSource> *)client userDetails:(id)userDetails;
+- (void)authViewController:(AKAuthViewController *)authViewController authenticationSuccessForSource:(id<AKLoginSource>)source userDetails:(id)userDetails;
 
 /*!
  *  Called when: user taps the close button; multiple login is not allowed and one login was successful.
@@ -51,6 +53,8 @@
  */
 @interface AKAuthViewController : UIViewController
 
+#pragma mark - Main methods
+
 /*!
  *  Delegate that will receive messages
  */
@@ -62,9 +66,9 @@
 @property (nonatomic, strong) NSArray* loginSources;
 
 /*!
- *  Gets or sets the login source into the picker
+ *  Gets or sets the login source into the view controller
  */
-@property (nonatomic, strong) AKClient<AKLoginSource> *selectedLoginSource;
+@property (nonatomic, strong) id<AKLoginSource> selectedLoginSource;
 
 /*!
  *  Array of login service details that were successfully logined by the user
@@ -74,7 +78,7 @@
 /*!
  * Displays a close button and allows user to close the controller.
  *
- * Default: NO
+ * Default: YES
  */
 @property (nonatomic, getter = isDismissable) BOOL dismissable;
 
@@ -84,6 +88,8 @@
  * Default: NO
  */
 @property (nonatomic) BOOL allowsMultipleLogin;
+
+#pragma mark - UI exposed for subclassing / modifying
 
 //
 // View elements that can be modified, but be careful, because they are explicitly set when view loads.
@@ -125,6 +131,8 @@
  */
 @property (nonatomic, strong) UIButton *closeButton;
 
+#pragma mark - Initializers
+
 /*!
  *  Designated initializer creates a AKAuthViewController with provided login sources.
  *
@@ -132,6 +140,15 @@
  *
  *  @return Initialized View Controller
  */
-- (id)initWithLoginSources:(NSArray *)loginSources;
+- (instancetype)initWithLoginSources:(NSArray *)loginSources;
+
+/*!
+ *  Initializer pulls login sources out of AKClientManager instance
+ *
+ *  @param manager AKClientManager
+ *
+ *  @return Initialized View Controller
+ */
+- (instancetype)initWithClientManager:(AKClientManager *)manager;
 
 @end

@@ -4,9 +4,6 @@
 
 #import "AKOAuthUser.h"
 
-
 @implementation AKOAuthUser
-{
 
-}
 @end

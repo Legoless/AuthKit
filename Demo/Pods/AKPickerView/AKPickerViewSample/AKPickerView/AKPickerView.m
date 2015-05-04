@@ -364,22 +364,28 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-	if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
 		[self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
 
-	if (!decelerate) [self didEndScrolling];
+    if (!decelerate) { [self didEndScrolling]; }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
 		[self.delegate scrollViewDidScroll:scrollView];
+    }
 
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue
 					 forKey:kCATransactionDisableActions];
 	self.collectionView.layer.mask.frame = self.collectionView.bounds;
 	[CATransaction commit];
+    
+    //
+    //
+    //
 }
 
 #pragma mark -

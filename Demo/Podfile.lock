@@ -51,6 +51,7 @@ PODS:
   - AuthKit/Interface (0.7.0):
     - AKPickerView
     - AuthKit/Core
+    - AuthKit/OAuth
     - Haystack
     - PureLayout
   - AuthKit/LinkedIn (0.7.0):
@@ -108,7 +109,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   AKPickerView: 839064418c8774f17ed18e85418919708a266916
-  AuthKit: 1421aee06c4111741d0bf9cbdf283531a084b4f5
+  AuthKit: 144fd40fd2757b001fef53baa62c227f928b2203
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   FBSDKCoreKit: 469ed167195f860dbd2b4c4bbaa33d2e90598db9
   FBSDKLoginKit: ff6224762732e3698f30942e4544321b8c7a23e6

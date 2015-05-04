@@ -48,6 +48,11 @@
 
 #pragma mark - Initializers
 
+- (instancetype)initWithClientId:(NSString *)clientId clientSecret:(NSString *)clientSecret
+{
+    return [self initWithAccessParameters:@{ AKServiceKey : clientId, AKServiceSecret : clientSecret }];
+}
+
 - (instancetype)initWithAccessParameters:(NSDictionary *)parameters
 {
     //

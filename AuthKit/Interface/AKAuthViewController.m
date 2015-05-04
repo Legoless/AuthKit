@@ -8,12 +8,16 @@
 
 #import <PureLayout/PureLayout.h>
 
+#import "AKOAuth.h"
+#import "AKClientManager.h"
 #import "AKAuthViewController.h"
 
-@interface AKAuthViewController () <UITextFieldDelegate, AKPickerViewDelegate>
+@interface AKAuthViewController () <UITextFieldDelegate, AKPickerViewDelegate, AKPickerViewDataSource>
 
 @property (nonatomic) BOOL didSetupConstraints;
 @property (nonatomic, strong) NSMutableArray *loginDetails;
+
+@property (nonatomic, strong) NSLayoutConstraint *descriptionLabelConstraint;
 
 @end
 
@@ -88,11 +92,14 @@
     {
         _servicePickerView = [[AKPickerView alloc] initForAutoLayout];
         _servicePickerView.delegate = self;
+        _servicePickerView.dataSource = self;
+        _servicePickerView.pickerViewStyle = AKPickerViewStyleFlat;
         _servicePickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
-        _servicePickerView.textColor = UIColorFromKey(@"c0392b");
-        _servicePickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:20.0];
+        _servicePickerView.textColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+        _servicePickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0];
         _servicePickerView.highlightedTextColor = UIColorFromKey(@"white");
         _servicePickerView.interitemSpacing = 30.0;
+        _servicePickerView.maskDisabled = NO;
     }
     
     return _servicePickerView;
@@ -140,15 +147,40 @@
     return self.loginDetails.copy;
 }
 
+- (BOOL)isDismissable
+{
+    return !self.closeButton.hidden;
+}
+
+- (void)setDismissable:(BOOL)dismissable
+{
+    self.closeButton.hidden = !dismissable;
+}
+
 #pragma mark - Initializers
 
 - (id)init
 {
-    return [self initWithLoginSources:nil];
+    return [self initWithClientManager:[AKClientManager sharedManager]];
+}
+
+- (id)initWithClientManager:(AKClientManager *)manager
+{
+    return [self initWithLoginSources:manager.loginSources];
 }
 
 - (id)initWithLoginSources:(NSArray *)loginSources
 {
+    //
+    // Need at least a single login source to be able to initialize view controller correctly,
+    // This is used incorrectly, so we trigger an exception.
+    //
+    
+    if (!loginSources.count)
+    {
+        @throw [NSException exceptionWithName:@"com.unifiedsense.AuthKit" reason:@"AuthViewController requires at leat single login source." userInfo:nil];
+    }
+    
     self = [super init];
     
     if (self)
@@ -181,7 +213,7 @@
     
     [self.view setNeedsUpdateConstraints];
     
-    [self updateUI];
+    [self updateUIWithItem:0];
 }
 
 - (void)updateViewConstraints
@@ -222,7 +254,7 @@
     //
     
     [self.descriptionLabel autoAlignAxisToSuperviewAxis:ALAxisVertical];
-    [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.passwordTextField withOffset:30.0];
+    self.descriptionLabelConstraint = [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.passwordTextField withOffset:30.0];
     
     //
     // Picker view
@@ -250,11 +282,11 @@
     [self.closeButton autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20.0];
     
     //
-    // Header image vi ew
+    // Header image view
     //
     
-    [self.headerImageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(70.0, 20.0, 0.0, 20.0) excludingEdge:ALEdgeBottom];
-    [self.headerImageView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.usernameTextField withOffset:-50.0];
+    [self.headerImageView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(100.0, 20.0, 0.0, 20.0) excludingEdge:ALEdgeBottom];
+    [self.headerImageView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.usernameTextField withOffset:-70.0];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -266,31 +298,82 @@
 
 - (void)loginButtonTap:(UIButton *)sender
 {
-    AKClient<AKPasswordLoginSource> *client = self.selectedLoginSource;
+    id source = self.selectedLoginSource;
     
-    [client loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text success:^(id details)
+    //
+    // Base checks for empty username, password, etc., but only in case we have a password source,
+    // OAuth usually does this on it's own
+    //
+    
+    if ([source respondsToSelector:@selector(loginWithUsername:password:success:failure:)])
+    {
+        NSString *errorMessage = nil;
+        
+        if (!self.usernameTextField.text.length)
+        {
+            self.usernameTextField.layer.borderColor = [UIColor alizarinColor].CGColor;
+            
+            errorMessage = errorMessage != nil ? errorMessage : NSLocalizedString(@"Enter username / email", @"");
+        }
+        else
+        {
+            self.usernameTextField.layer.borderColor = [UIColorFromKey(@"white") colorWithAlphaComponent:0.1].CGColor;
+        }
+        
+        if (!self.passwordTextField.text.length)
+        {
+            self.passwordTextField.layer.borderColor = [UIColor alizarinColor].CGColor;
+            
+            errorMessage = errorMessage != nil ? errorMessage : NSLocalizedString(@"Enter password", @"");
+        }
+        else
+        {
+            self.passwordTextField.layer.borderColor = [UIColorFromKey(@"white") colorWithAlphaComponent:0.1].CGColor;
+        }
+        
+        if (errorMessage.length)
+        {
+            self.descriptionLabel.text = [errorMessage uppercaseString];
+            
+            return;
+        }
+    }
+    
+    self.descriptionLabel.text = [NSLocalizedString(@"Logging in", @"") uppercaseString];
+    
+    AKSuccessBlock successBlock = ^(id details)
     {
         [self.loginDetails addObject:details];
         
         if ([self.delegate respondsToSelector:@selector(authViewController:authenticationSuccessForSource:userDetails:)])
         {
-            [self.delegate authViewController:self authenticationSuccessForSource:client userDetails:details];
+            [self.delegate authViewController:self authenticationSuccessForSource:source userDetails:details];
         }
         
         if (!self.allowsMultipleLogin && [self.delegate respondsToSelector:@selector(authViewControllerDidFinish:)])
         {
             [self.delegate authViewControllerDidFinish:self];
         }
-    }
-    failure:^(id responseObject, NSError *error)
+    };
+    
+    AKFailureBlock failureBlock = ^(id responseObject, NSError *error)
     {
-        self.descriptionLabel.text = [@"Error: Wrong username or password" uppercaseString];
+        self.descriptionLabel.text = [NSLocalizedString(@"Wrong username or password", @"") uppercaseString];
         
         if ([self.delegate respondsToSelector:@selector(authViewController:authenticationFailedForSource:error:)])
         {
-            [self.delegate authViewController:self authenticationFailedForSource:client error:error];
+            [self.delegate authViewController:self authenticationFailedForSource:source error:error];
         }
-    }];
+    };
+    
+    if ([source respondsToSelector:@selector(loginWithSuccess:failure:)])
+    {
+        [source loginWithSuccess:successBlock failure:failureBlock];
+    }
+    else if ([source respondsToSelector:@selector(loginWithUsername:password:success:failure:)])
+    {
+        [source loginWithUsername:self.usernameTextField.text password:self.passwordTextField.text success:successBlock failure:failureBlock];
+    }
 }
 
 - (void)closeButtonTap:(UIButton *)sender
@@ -327,27 +410,85 @@
         return;
     }
     
-    self.selectedLoginSource = self.loginSources[item];
+    [self updateUIWithItem:item];
     
-    [self updateUI];
+    self.selectedLoginSource = self.loginSources[item];
 }
 
 #pragma mark - UITextFieldDelegate
 
 #pragma mark - Helper functions
 
-
-- (void)updateUI
-{    
+/*!
+ *  Function animates UI to correct item
+ *
+ *  @param item index
+ */
+- (void)updateUIWithItem:(NSInteger)item
+{
+    BOOL reverse = NO;
+    
+    //
+    // Check if it is reverse, in that case we must have currently an OAuth Login Source,
+    // and next is the normal one.
+    //
+    
+    id<AKLoginSource> source = self.loginSources[item];
+    
     if ( (self.loginSources.count > 0) && (self.selectedLoginSource == nil) )
     {
         self.selectedLoginSource = self.loginSources[0];
     }
+    else
+    {
+        reverse = ([self.selectedLoginSource conformsToProtocol:@protocol(AKOAuthLoginSource)] && ![source conformsToProtocol:@protocol(AKOAuthLoginSource)]);
+        
+    }
+    
+    //
+    // If there is an AKOAuthLoginSource, hide username and password
+    //
+    
+    BOOL isOAuthSource = [source conformsToProtocol:@protocol(AKOAuthLoginSource)];
+    
+    [self.view layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction animations:^
+    {
+        if (reverse)
+        {
+            self.descriptionLabelConstraint.constant = isOAuthSource ? -40.0 : 30.0;
+            
+            [self.view layoutIfNeeded];
+        }
+        else
+        {
+            self.usernameTextField.alpha = isOAuthSource ? 0.0 : 1.0;
+            self.passwordTextField.alpha = isOAuthSource ? 0.0 : 1.0;
+        }
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction animations:^
+        {
+            if (reverse)
+            {
+                self.usernameTextField.alpha = isOAuthSource ? 0.0 : 1.0;
+                self.passwordTextField.alpha = isOAuthSource ? 0.0 : 1.0;
+            }
+            else
+            {
+                self.descriptionLabelConstraint.constant = isOAuthSource ? -40.0 : 30.0;
+                
+                [self.view layoutIfNeeded];
+            }
+        } completion:nil];
+    }];
     
     self.usernameTextField.text = @"";
     self.passwordTextField.text = @"";
     
-    self.usernameTextField.placeholder = (self.selectedLoginSource != nil) ? [NSString stringWithFormat:@"%@ User", self.selectedLoginSource.sourceName] : @"User";
+    self.descriptionLabel.text = [NSLocalizedString(@"Login using", @"") uppercaseString];
+    
+    self.usernameTextField.placeholder = (source != nil) ? [NSString stringWithFormat:@"%@ User", source.sourceName] : @"User";
     
     if (self.allowsMultipleLogin)
     {

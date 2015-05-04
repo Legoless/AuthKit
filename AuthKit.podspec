@@ -39,10 +39,15 @@ Pod::Spec.new do |s|
     ss.source_files = 'AuthKit/Interface/*.{h,m}'
     
     ss.dependency 'AuthKit/Core'
+    ss.dependency 'AuthKit/OAuth'
     ss.dependency 'AKPickerView'
     ss.dependency 'Haystack'
     ss.dependency 'PureLayout'
   end
+
+  #
+  # Services
+  #
 
   s.subspec 'GitHub' do |ss|
     ss.source_files = 'Service/GitHub/*.{h,m}'

@@ -26,36 +26,6 @@
     return (self.googleService.authentication != nil) ? AKSessionStateOpen : AKSessionStateClosed;
 }
 
-- (BOOL)shouldFetchGooglePlusUser
-{
-    return self.googleService.shouldFetchGooglePlusUser;
-}
-
-- (void)setShouldFetchGooglePlusUser:(BOOL)shouldFetchGooglePlusUser
-{
-    self.googleService.shouldFetchGooglePlusUser = shouldFetchGooglePlusUser;
-}
-
-- (BOOL)shouldFetchGoogleUserEmail
-{
-    return self.googleService.shouldFetchGoogleUserEmail;
-}
-
-- (void)setShouldFetchGoogleUserEmail:(BOOL)shouldFetchGoogleUserEmail
-{
-    self.googleService.shouldFetchGoogleUserEmail = shouldFetchGoogleUserEmail;
-}
-
-- (BOOL)shouldFetchGoogleUserID
-{
-    return self.googleService.shouldFetchGoogleUserID;
-}
-
-- (void)setShouldFetchGoogleUserID:(BOOL)shouldFetchGoogleUserID
-{
-    self.googleService.shouldFetchGoogleUserID = shouldFetchGoogleUserID;
-}
-
 #pragma mark - Initializers
 
 - (instancetype)initWithAccessParameters:(NSDictionary *)parameters
@@ -74,6 +44,10 @@
         }
 
         self.googleService.delegate = self;
+        
+        self.googleService.shouldFetchGooglePlusUser = YES;
+        self.googleService.shouldFetchGoogleUserEmail = YES;
+        self.googleService.shouldFetchGoogleUserID = YES;
     }
 
     return self;

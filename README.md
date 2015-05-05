@@ -1,4 +1,4 @@
-![AuthKit](https://raw.githubusercontent.com/Legoless/AuthKit/master/Resource/logo.png)
+[![AuthKit](https://raw.githubusercontent.com/Legoless/AuthKit/master/Resource/logo.png)(https://github.com/legoless/AuthKit)
 
 [![Stories in Ready](https://badge.waffle.io/Legoless/AuthKit.png?label=ready&title=Ready)](https://waffle.io/Legoless/AuthKit)
 [![Build Status](https://travis-ci.org/Legoless/AuthKit.svg)](https://travis-ci.org/legoless/AuthKit)
@@ -60,7 +60,7 @@ When AuthKit is installed, you need to import it's client implementations:
 #import <AuthKit/AKTwitter.h>
 ```
 
-## Password Based Authentication
+### Password Based Authentication
 
 If you are be using only password based authentication services, all you need to do is a new instance of it's appropriate client (does not matter where). See the example below:
 
@@ -74,7 +74,7 @@ When you want the user to login, just call the login function:
 [github loginWithUsername:username password:password success:^(id user) { ... } failure:^(id object, NSError *error) { ... }];
 ```
 
-## OAuth Based Authentication
+### OAuth Based Authentication
 
 With OAuth Based Services certain calls must be handled manually:
 - Application Launch Options (`NSDictionary` provided by `application:didFinishLaunchingWithOptions`) need to be redirected to specific login service,
@@ -107,9 +107,11 @@ While every login service implementation supports this, the recommeded way is to
 
 ```
 
-## User interface
+### User interface
 
-AuthKit provides a login screen out of the box and is implemented by `AKAuthViewController` class.
+AuthKit provides a login screen out of the box and is implemented by `AKAuthViewController` class. The class needs at least one login source (instance of an object that implements `AKLoginSource` protocol) to be used. View controller dynamically adapts to login source and supports both `AKOAuthLoginSource` and `AKPasswordLoginSource` clients. Logging into multiple services is supported.
+
+### Adding custom login source
 
 Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.
 

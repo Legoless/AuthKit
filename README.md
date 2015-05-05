@@ -57,13 +57,12 @@ pod 'AuthKit/Interface'
 
 # Documentation
 
-The entire **AuthKit** documentation is on [Wiki](https://github.com/Legoless/AuthKit/wiki)
+The entire **AuthKit** documentation is available on [Wiki](https://github.com/Legoless/AuthKit/wiki) and on [CocoaDocs](http://cocoadocs.org/docsets/AuthKit/).
 
-- Read [Getting Started](https://github.com/Legoless/AuthKit/wiki/Getting-Started)
-- Browse [Architecture](https://github.com/Legoless/AuthKit/wiki/Architecture)
-- Go through [Frequently Asked Questions](https://github.com/Legoless/AuthKit/wiki/FAQ)
-
-
+- Read [Getting Started](https://github.com/Legoless/AuthKit/wiki/Getting-Started).
+- Browse [Architecture](https://github.com/Legoless/AuthKit/wiki/Architecture).
+- Go through [Frequently Asked Questions](https://github.com/Legoless/AuthKit/wiki/FAQ).
+- 
 
 Contact
 ======

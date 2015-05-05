@@ -6,9 +6,9 @@
 [![Pod Platform](http://img.shields.io/cocoapods/p/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
 [![Pod License](http://img.shields.io/cocoapods/l/AuthKit.svg?style=flat)](http://opensource.org/licenses/MIT)
 
-AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers. AuthKit allows logging in to multiple online services with really easy API. It wraps multiple SDK's and provides configured AFNetworking clients which you can use to communicate with the service REST API directly, such as Facebook's Graph API.
+AuthKit provides a system to login into multiple online (social) services. Use a custom-built view controller to display login interface for any AuthKit supported service.
 
-Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a Cocoa Pod, due to dependency conflicts. AuthKit fills this gap of providing `AFHTTPNetworkOperationManager` and `AFHTTPSessionManager`  classes configured to be used with any API, including **GitHub**, **Crashlytics** and more.
+AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers.  It wraps multiple SDK's and provides configured AFNetworking clients which you can use to communicate with the service REST API directly, such as Facebook's Graph API. Or you can use the underlying library directly for specific functionality.
 
 # Features
 
@@ -23,7 +23,7 @@ Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existi
   - ...
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service.
-- Completely extensible clients and UI customizations.
+- Completely extensible clients and UI.
 - **A single, simple API to work with every service.**
 
 # Install
@@ -45,9 +45,9 @@ pod 'AuthKit/Twitter'
 
 The example above will only install `AKClient` implementations of **Facebook** and **Twitter**.
 
-# Usage
+# Getting Started
 
-AuthKit is very easy to use, start by importing client implementations:
+AuthKit is implemented as a single login API that wraps multiple services.
 
 ```
 #import <AuthKit/AKFacebook.h>
@@ -56,31 +56,13 @@ AuthKit is very easy to use, start by importing client implementations:
 
 All **AuthKit** clients derive from `AKClient` class, which wraps login implementation to only a few of methods. For a full OAuth implementation, `AKLoginManager` class needs to be called from your app delegate, so URL redirect calls are correctly redirected to the underlying SDK.
 
-# Contributing
+# Client Implementation
 
 Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.
 
-# TODO
+# History
 
-- Storing login data as Key-Value with Full Keychain support using **SSKeychain**
-- Add more social services
-  - Amazon
-  - Blogger
-  - Disqus
-  - Instagram
-  - LiveJournal
-  - Mail.ru
-  - Odnoklassniki
-  - OpenID
-  - Origin
-  - Skyrock.com
-  - Twitch.tv
-  - Vimeo
-  - VKontakte
-  - WordPress.com
-  - ...
-- ReactiveCocoa support
-- Swift Support
+AuthKit was originally implemented due to encountering a project that needed to make GitHub API calls, but used AFNetworking 2.x throughout entire project. Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a Cocoa Pod, due to dependency conflicts. 
 
 Contact
 ======

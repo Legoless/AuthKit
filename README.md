@@ -6,20 +6,22 @@
 [![Pod Platform](http://img.shields.io/cocoapods/p/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
 [![Pod License](http://img.shields.io/cocoapods/l/AuthKit.svg?style=flat)](http://opensource.org/licenses/MIT)
 
-AuthKit provides a system to login into multiple online (social) services. Use a custom-built view controller to display login interface for any AuthKit supported service.
+AuthKit provides a system to login into multiple online (social) services. Use a custom-built view controller to display login interface for any AuthKit supported service. To add your 
 
-AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers.  It wraps multiple SDK's and provides configured AFNetworking clients which you can use to communicate with the service REST API directly, such as Facebook's Graph API. Or you can use the underlying library directly for specific functionality.
+*AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers.  It wraps multiple SDK's and provides configured AFNetworking clients which you can use to communicate with the service REST API directly, such as Facebook's Graph API. Or you can use the underlying library directly for specific functionality.*
 
 # Features
 
 - Easily login to the next services:
-  - [Crashlytics](http://www.crashlytics.com)
-  - [Facebook](https://www.facebook.com)
-  - [GitHub](https://github.com)
-  - [Google+](https://plus.google.com)
-  - [LinkedIn](https://linkedin.com)
-  - [Twitter](https://twitter.com)
-  - [Windows Live](https://www.live.com)
+  - Password Based Authentication 
+    - [Crashlytics](http://www.crashlytics.com)
+    - [GitHub](https://github.com)
+  - OAuth Based Authentication
+    - [Facebook](https://www.facebook.com)
+    - [Google+](https://plus.google.com)
+    - [LinkedIn](https://linkedin.com)
+    - [Twitter](https://twitter.com)
+    - [Windows Live](https://www.live.com)
   - ...
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service.
@@ -36,29 +38,58 @@ pod 'AuthKit'
 
 As alternative install method, you can manually drag & drop files from the repository into your Xcode project.
 
-If you wish to install only selected parts of AuthKit (*for example, only install Facebook and Twitter login clients*), use separate subspecs.
+If you wish to install only specific services of AuthKit (*for example, only install Facebook and Twitter login clients*), use separate subspecs.
 
 ```
 pod 'AuthKit/Facebook'
 pod 'AuthKit/Twitter'
 ```
 
-The example above will only install `AKClient` implementations of **Facebook** and **Twitter**.
+The example above will only install `AKClient` implementations of **Facebook** and **Twitter**. If you are also going to use AuthKit interface extensions, such as login screen, also include:
+
+```
+pod 'AuthKit/Interface'
+```
 
 # Getting Started
 
-AuthKit is implemented as a single login API that wraps multiple services.
+When AuthKit is installed, you need to import it's client implementations:
 
 ```
 #import <AuthKit/AKFacebook.h>
 #import <AuthKit/AKTwitter.h>
 ```
 
+## Password Based Authentication
+
+If you are be using only password based authentication services, all you need to do is a new instance of it's appropriate client (does not matter where). See the example below:
+
+```
+AKGitHubClient *github = [[AKGitHubClient alloc] initWithClientID:@"<CLIENT_ID>" clientSecret:@"<CLIENT_SECRET>" scopes:@[ AKGitHubScopeUser, AKGitHubScopeRepo ] note:@"Test"];
+```
+
+When you want the user to login, just call the login function:
+
+```
+[github loginWithUsername:username password:password success:^(id user) { ... } failure:^(id object, NSError *error) { ... }];
+```
+
+## OAuth Based Authentication
+
+With OAuth Based Services certain calls must be handled manually.
+
+
 All **AuthKit** clients derive from `AKClient` class, which wraps login implementation to only a few of methods. For a full OAuth implementation, `AKLoginManager` class needs to be called from your app delegate, so URL redirect calls are correctly redirected to the underlying SDK.
 
 # Client Implementation
 
 Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.
+
+# Architecture
+
+## Protocols
+
+
 
 # History
 
@@ -71,7 +102,7 @@ Dal Rupnik
 
 - [legoless](https://github.com/legoless) on **GitHub**
 - [@thelegoless](https://twitter.com/thelegoless) on **Twitter**
-- [legoless@arvystate.net](mailto:legoless@arvystate.net)
+- [dal@unifiedsense.com](mailto:dal@unifiedsense.com)
 
 License
 ======

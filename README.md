@@ -64,7 +64,6 @@ The entire **AuthKit** documentation is available on [Wiki](https://github.com/L
 - Read [Getting Started](https://github.com/Legoless/AuthKit/wiki/Getting-Started).
 - Browse [Architecture](https://github.com/Legoless/AuthKit/wiki/Architecture).
 - Go through [Frequently Asked Questions](https://github.com/Legoless/AuthKit/wiki/FAQ).
-- 
 
 Contact
 ======

@@ -30,7 +30,9 @@ AuthKit provides a system to login into multiple online (social) services. Use a
 
 # The Story
 
-AuthKit was originally implemented due to encountering a project that needed to make GitHub API calls, but used AFNetworking 2.x throughout entire project. Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a Cocoa Pod, due to dependency conflicts. 
+*AuthKit was originally developed because a fairly simple project needed to make GitHub API calls, but used AFNetworking 2.x throughout entire project. Since AFNetworking 1.x and 2.x are incompatible with different APIs, many existing wrapper libraries (such as [OctoKit](https://github.com/octokit/octokit.objc)) cannot be used if 2.x version is installed as a Cocoa Pod, due to dependency conflicts.
+
+From there the library was extended to support multiple login services and tools to aid with authentication on iOS.*
 
 # Install
 

@@ -76,12 +76,40 @@ When you want the user to login, just call the login function:
 
 ## OAuth Based Authentication
 
-With OAuth Based Services certain calls must be handled manually.
+With OAuth Based Services certain calls must be handled manually:
+- Application Launch Options (`NSDictionary` provided by `application:didFinishLaunchingWithOptions`) need to be redirected to specific login service,
+- Application to active state must be redirected to login service (`applicationDidBecomeActive:` method),
+- Application opened by URL must be redirected to login service (`application:openURL:sourceApplication:annotation` method).
 
+While every login service implementation supports this, the recommeded way is to use `AKClientManager` shared instance. See the example below:
 
-All **AuthKit** clients derive from `AKClient` class, which wraps login implementation to only a few of methods. For a full OAuth implementation, `AKLoginManager` class needs to be called from your app delegate, so URL redirect calls are correctly redirected to the underlying SDK.
+```
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    AKFacebookClient *facebook = [[AKFacebookClient alloc] initWithPermissions:@[ AKFacebookPermissionPublicProfile, AKFacebookPermissionEmail ]];
 
-# Client Implementation
+    // Register Facebook client with client manager
+    [[AKClientManager sharedManager] addLoginSource:facebook];
+    
+    [[AKClientManager sharedManager] setupWithLaunchOptions:launchOptions];
+
+    return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[AKClientManager sharedManager] handleDidBecomeActive];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[AKClientManager sharedManager] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+
+@end
+
+```
+
+## User interface
+
+AuthKit provides a login screen out of the box and is implemented by `AKAuthViewController` class.
 
 Another service can easily be added by creating `AKClient` subclass and implementing the abstract methods in superclass. See either `AKGitHubClient` or `AKCrashlyticsClient` for example. Login layouts can be implemented subclassing the `AKAuthViewController` class.
 

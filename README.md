@@ -26,7 +26,7 @@ AuthKit provides a system to login into multiple online (social) services. Use a
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service.
 - Completely extensible clients and UI.
-- **A single, simple API to work with every service.**
+- **A single, simple API to use with every service.**
 
 # The Story
 

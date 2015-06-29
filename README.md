@@ -8,7 +8,7 @@
 [![Pod Platform](http://img.shields.io/cocoapods/p/AuthKit.svg?style=flat)](http://cocoadocs.org/docsets/AuthKit/)
 [![Pod License](http://img.shields.io/cocoapods/l/AuthKit.svg?style=flat)](http://opensource.org/licenses/MIT)
 
-AuthKit provides a system to login into multiple online (social) services. Use a custom-built view controller to display login interface for any AuthKit supported service. It's main purpose is solving the implementation of login system in every application with a simple easy to use interface.
+**AuthKit** provides a system to login into multiple online (social) services. Use a custom-built view controller to display login interface for any AuthKit supported service. It's main purpose is solving the implementation of login system in every application with a simple easy to use interface.
 
 *AuthKit is to authentication as to what [**ARAnalytics**](https://github.com/orta/ARAnalytics) is to all analytics providers.  It wraps multiple SDK's and provides configured AFNetworking clients which you can use to communicate with the service REST API directly, such as Facebook's Graph API. Or you can use the underlying library directly for specific functionality.*
 

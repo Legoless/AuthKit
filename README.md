@@ -79,4 +79,4 @@ Dal Rupnik
 License
 ======
 
-**AuthKit** is available under the MIT license. See [LICENSE](https://github.com/Legoless/AuthKit/blob/master/LICENSE) file for more information.
+**AuthKit** is available under the **MIT** license. See [LICENSE](https://github.com/Legoless/AuthKit/blob/master/LICENSE) file for more information.

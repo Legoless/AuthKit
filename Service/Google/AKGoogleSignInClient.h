@@ -11,5 +11,6 @@
 @interface AKGoogleSignInClient : AKGoogleClient
 
 - (instancetype)initWithClientId:(NSString *)clientId;
+- (instancetype)initWithClientId:(NSString *)clientId scopes:(NSArray *)scopes;
 
 @end

@@ -32,7 +32,12 @@
 
 - (instancetype)initWithClientId:(NSString *)clientId
 {
-    self = [super initWithClientId:clientId forGogleClientClass:[self class]];
+    return [self initWithClientId:clientId scopes:nil];
+}
+
+- (instancetype)initWithClientId:(NSString *)clientId scopes:(NSArray *)scopes
+{
+    self = [super initWithClientId:clientId forGogleClientClass:[self class] scopes:scopes];
     if (self)
     {
         self.googleSignInService.delegate = self;

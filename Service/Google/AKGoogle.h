@@ -7,4 +7,5 @@
 //
 
 #import "AKGoogleConstants.h"
-#import "AKGoogleClient.h"
+#import "AKGooglePlusClient.h"
+#import "AKGoogleSignInClient.h"

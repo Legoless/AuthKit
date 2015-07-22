@@ -62,10 +62,10 @@
     return self;
 }
 
-- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(__unsafe_unretained Class)clientClass
-{
-    return [self initWithClientId:clientId forGogleClientClass:clientClass scopes:nil];
-}
+//- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(__unsafe_unretained Class)clientClass
+//{
+//    return [self initWithClientId:clientId forGogleClientClass:clientClass scopes:nil];
+//}
 
 - (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(__unsafe_unretained Class)clientClass scopes:(NSArray *)scopes
 {

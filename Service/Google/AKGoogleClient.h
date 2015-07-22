@@ -17,7 +17,7 @@
 @property (nonatomic, copy) AKSuccessBlock successBlock;
 @property (nonatomic, copy) AKFailureBlock failureBlock;
 
-- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(Class)clientClass;
+//- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(Class)clientClass;
 - (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(Class)clientClass scopes:(NSArray *)scopes;
 
 @end

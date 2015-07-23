@@ -25,14 +25,19 @@
 
 - (AKSessionState)state
 {
-    return (((GPPSignIn *)self.googleService).authentication != nil) ? AKSessionStateOpen : AKSessionStateClosed;
+    return (self.googlePlusService.authentication != nil) ? AKSessionStateOpen : AKSessionStateClosed;
 }
 
 #pragma mark - Initializers
 
 - (instancetype)initWithClientId:(NSString *)clientId
 {
-    self = [super initWithClientId:clientId forGogleClientClass:[self class]];
+    return [self initWithClientId:clientId scopes:nil];
+}
+
+- (instancetype)initWithClientId:(NSString *)clientId scopes:(NSArray *)scopes
+{
+    self = [super initWithClientId:clientId forGogleClientClass:[self class] scopes:scopes];
     
     if (self)
     {

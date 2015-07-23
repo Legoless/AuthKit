@@ -46,7 +46,7 @@
             
             self.googleService = googleService;
         }
-        else if ([clientClass isSubclassOfClass:[AKGooglePlusClient class]])
+        else if ([clientClass isSubclassOfClass:[AKGoogleSignInClient class]])
         {
             GIDSignIn *googleService = [GIDSignIn sharedInstance];
             
@@ -56,6 +56,8 @@
             {
                 googleService.scopes = self.accessParameters[AKScopes];
             }
+            
+            self.googleService = googleService;
         }
     }
 
@@ -97,6 +99,9 @@
 
 - (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
+    self.successBlock = success;
+    self.failureBlock = failure;
+    
     // Both Goole logins use -singOut method
     [self.googleService signOut];
 }

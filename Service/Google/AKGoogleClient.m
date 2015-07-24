@@ -129,11 +129,19 @@
 //    [self.googlePlusService trySilentAuthentication];
 //}
 
-//- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    
-//    return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
-//}
+- (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([self isKindOfClass:[AKGooglePlusClient class]])
+    {
+        return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
+    else if ([self isKindOfClass:[AKGoogleSignInClient class]])
+    {
+        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
+    
+    return NO;
+}
 
 
 

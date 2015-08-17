@@ -28,7 +28,7 @@
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service (or implement your own).
 - Completely extensible clients and UI.
-- **A single, simple API to use with every service.**
+- **A single unified API to use with every service.**
 
 # The Story
 

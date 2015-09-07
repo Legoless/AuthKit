@@ -23,7 +23,7 @@
     - [Google+](https://plus.google.com)
     - [LinkedIn](https://linkedin.com)
     - [Twitter](https://twitter.com)
-    - [Windows Live](https://www.live.com)
+    - [Outlook](https://www.outlook.com)
     - ...
 - Request logined user details for each service.
 - Dynamic and customizable user interface for logging in into each service (or implement your own).

@@ -2,18 +2,13 @@
 // Created by Dal Rupnik on 23/03/15.
 //
 
-#import <GooglePlus.h>
 #import "AKGoogleClient.h"
+#import "AKGooglePlusClient.h"
+#import "AKGoogleSignInClient.h"
 
-@interface AKGoogleClient () <GPPSignInDelegate>
+@interface AKGoogleClient () <GIDSignInDelegate>
 
-@property (nonatomic, strong) GPPSignIn *googleService;
-
-//
-// Used to store pointers to blocks
-//
-@property (nonatomic, copy) AKSuccessBlock successBlock;
-@property (nonatomic, copy) AKFailureBlock failureBlock;
+@property (nonatomic, strong, readwrite) id googleService;
 
 @end
 
@@ -23,42 +18,58 @@
 
 - (AKSessionState)state
 {
-    return (self.googleService.authentication != nil) ? AKSessionStateOpen : AKSessionStateClosed;
+    // Override this method to set state accordingly
 }
 
 #pragma mark - Initializers
 
-- (instancetype)initWithAccessParameters:(NSDictionary *)parameters
+- (instancetype)initWithAccessParameters:(NSDictionary *)parameters forGogleClientClass:(__unsafe_unretained Class)clientClass
 {
     self = [super initWithAccessParameters:parameters];
 
     if (self)
     {
-        self.googleService = [GPPSignIn sharedInstance];
-
-        self.googleService.clientID = self.accessParameters[AKServiceKey];
-
-        if ([self.accessParameters[AKScopes] isKindOfClass:[NSArray class]])
+        if ([clientClass isSubclassOfClass:[AKGooglePlusClient class]])
         {
-            self.googleService.scopes = self.accessParameters[AKScopes];
+            GPPSignIn *googleService = [GPPSignIn sharedInstance];
+            
+            googleService.clientID = self.accessParameters[AKServiceKey];
+            
+            if ([self.accessParameters[AKScopes] isKindOfClass:[NSArray class]])
+            {
+                googleService.scopes = self.accessParameters[AKScopes];
+            }
+            
+            googleService.shouldFetchGooglePlusUser = YES;
+            googleService.shouldFetchGoogleUserEmail = YES;
+            googleService.shouldFetchGoogleUserID = YES;
+            
+            self.googleService = googleService;
         }
-
-        self.googleService.delegate = self;
-        
-        self.googleService.shouldFetchGooglePlusUser = YES;
-        self.googleService.shouldFetchGoogleUserEmail = YES;
-        self.googleService.shouldFetchGoogleUserID = YES;
+        else if ([clientClass isSubclassOfClass:[AKGoogleSignInClient class]])
+        {
+            GIDSignIn *googleService = [GIDSignIn sharedInstance];
+            
+            googleService.clientID = self.accessParameters[AKServiceKey];
+            
+            if ([self.accessParameters[AKScopes] isKindOfClass:[NSArray class]])
+            {
+                googleService.scopes = self.accessParameters[AKScopes];
+            }
+            
+            self.googleService = googleService;
+        }
     }
 
     return self;
 }
 
-- (instancetype)initWithClientId:(NSString *)clientId
-{
-    return [self initWithClientId:clientId scopes:nil];
-}
+//- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(__unsafe_unretained Class)clientClass
+//{
+//    return [self initWithClientId:clientId forGogleClientClass:clientClass scopes:nil];
+//}
 
-- (instancetype)initWithClientId:(NSString *)clientId scopes:(NSArray *)scopes
+- (instancetype)initWithClientId:(NSString *)clientId forGogleClientClass:(__unsafe_unretained Class)clientClass scopes:(NSArray *)scopes
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
@@ -66,15 +77,15 @@
     {
         [[NSException exceptionWithName:@"ClientIdCannotBeEmpty" reason:@"Empty Client Id was provided" userInfo:nil] raise];
     }
-
+    
     parameters[AKServiceKey] = clientId;
 
     if (scopes.count)
     {
         parameters[AKScopes] = scopes;
     }
-
-    return [self initWithAccessParameters:parameters];
+    
+    return [self initWithAccessParameters:parameters forGogleClientClass:clientClass];
 }
 
 #pragma mark - AKLoginSource
@@ -88,6 +99,10 @@
 
 - (void)logoutWithSuccess:(AKSuccessBlock)success failure:(AKFailureBlock)failure
 {
+    self.successBlock = success;
+    self.failureBlock = failure;
+    
+    // Both Goole logins use -singOut method
     [self.googleService signOut];
 }
 
@@ -102,45 +117,32 @@
 {
     self.successBlock = success;
     self.failureBlock = failure;
-
-    [self.googleService authenticate];
+    
+    // Override to continue login
 }
 
-- (void)setup
-{
-    [self.googleService trySilentAuthentication];
-}
+/**
+ *  Wasn't used anywhere
+ */
+//- (void)setup
+//{
+//    [self.googlePlusService trySilentAuthentication];
+//}
 
 - (BOOL)handleURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
-}
-
-#pragma mark - GPPSignInDelegate
-
-- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
-{
-    if (auth && self.successBlock)
+    if ([self isKindOfClass:[AKGooglePlusClient class]])
     {
-        self.successBlock(auth);
+        return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
     }
-    else if (error && self.failureBlock)
+    else if ([self isKindOfClass:[AKGoogleSignInClient class]])
     {
-        self.failureBlock(nil, error);
-    }
-    else if (self.failureBlock)
-    {
-        self.failureBlock(nil, nil);
+        return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation];
     }
     
-    self.successBlock = nil;
-    self.failureBlock = nil;
-    
-    if (self.sessionChangedHandler)
-    {
-        self.sessionChangedHandler(self.state, error);
-    }
-
+    return NO;
 }
+
+
 
 @end

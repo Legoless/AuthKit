@@ -34,6 +34,11 @@
         _loginManager = [[FBSDKLoginManager alloc] init];
     }
     
+    if (![UIApplication.sharedApplication canOpenURL:[NSURL URLWithString:@"fb://"]])
+    {
+        _loginManager.loginBehavior = FBSDKLoginBehaviorWeb;
+    }
+    
     return _loginManager;
 }
 

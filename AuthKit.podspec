@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary  = 'All in one solution for web service authentication.'
   s.homepage = 'https://github.com/legoless/AuthKit.git'
   s.authors  = { 'Dal Rupnik' => 'legoless@gmail.com' }
-  s.source   = { :git => 'https://github.com/legoless/AuthKit.git', :tag => s.version }
+  s.source   = { :git => 'https://github.com/r00li/AuthKit.git', :tag => s.version }
   s.platform = :ios, '7.0'
   s.requires_arc = true
  

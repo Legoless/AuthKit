@@ -53,7 +53,7 @@ pod 'AuthKit/Facebook'
 pod 'AuthKit/Twitter'
 ```
 
-The example above will only install `AKClient` implementations of **Facebook** and **Twitter**. If you are also going to use AuthKit interface, such as login screen, also include:
+The configuration above will only install `AKClient` implementations of **Facebook** and **Twitter**. If you are also going to use AuthKit interface, such as login screen, also include:
 
 ```
 pod 'AuthKit/Interface'

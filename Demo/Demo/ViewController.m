@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Dal Rupnik on 17/06/14.
-//  Copyright (c) 2014 arvystate.net. All rights reserved.
+//  Copyright (c) 2015 Unified Sense. All rights reserved.
 //
 
 #import <AuthKit/AuthKit.h>

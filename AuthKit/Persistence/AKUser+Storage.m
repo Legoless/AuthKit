@@ -4,8 +4,6 @@
 
 #import "AKUser.h"
 
+@implementation AKUser
 
-@implementation AKUser {
-
-}
 @end
